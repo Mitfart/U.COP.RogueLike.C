@@ -40,8 +40,16 @@ namespace Extentions {
 
 
 
-      private static Quaternion Rotation(this Transform  transform, Vector2 at) => Quaternion.AngleAxis(AngleOf(transform.RotateDir(at)), ZAxis);
-      private static float      AngleOf(Vector2          vector)                => Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
-      private static Vector2    RotateDir(this Transform transform, Vector2 at) => at - (Vector2)transform.position;
+      private static Quaternion Rotation(this Transform transform, Vector2 at) {
+         return Quaternion.AngleAxis(AngleOf(transform.RotateDir(at)), ZAxis);
+      }
+
+      private static float AngleOf(Vector2 vector) {
+         return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+      }
+
+      private static Vector2 RotateDir(this Transform transform, Vector2 at) {
+         return at - (Vector2)transform.position;
+      }
    }
 }

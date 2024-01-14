@@ -1,33 +1,43 @@
 ﻿using System;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
 
 namespace Infrastructure.AssetsManagement {
    public sealed class Assets : IAssets {
-      public async Task<T> Ins<T>(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null) {
-         GameObject obj = await Ins(key, at, rot, parent);
+      public T Ins<T>(
+         object      key,
+         Vector3     at     = default,
+         Quaternion? rot    = null,
+         Transform   parent = null
+      )
+         => Ins(key, at, rot, parent)
+           .TryGetComponent(out T component)
+            ? component
+            : throw new NullReferenceException($"Can't find component {nameof(T)}");
 
-         if (!obj.TryGetComponent(out T component)) throw new NullReferenceException($"Can't Instantiate: [ type: {typeof(T)}, key: {key} ]");
+      public GameObject Ins(
+         object      key,
+         Vector3     at     = default,
+         Quaternion? rot    = null,
+         Transform   parent = null
+      )
+         => Addressables.InstantiateAsync(key, at, rot ?? Quaternion.identity, parent).WaitForCompletion();
 
-         return component;
-      }
 
-      public async Task<GameObject> Ins(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null)
-         => await Addressables
-                 .InstantiateAsync(
-                     key,
-                     at,
-                     rot ?? Quaternion.identity,
-                     parent
-                  )
-                 .Task;
 
-      public async Task<T> Load<T>(object key) where T : Object
-         => await Addressables
-                 .LoadAssetAsync<T>(key)
-                 .Task;
+      public AsyncOperationHandle<GameObject> InsAsync(
+         object      key,
+         Vector3     at     = default,
+         Quaternion? rot    = null,
+         Transform   parent = null
+      )
+         => Addressables.InstantiateAsync(key, at, rot ?? Quaternion.identity, parent);
+
+
+
+      public AsyncOperationHandle<T> Load<T>(object key) where T : Object => Addressables.LoadAssetAsync<T>(key);
 
       public void Unload(object key) {
          // @formatter:off

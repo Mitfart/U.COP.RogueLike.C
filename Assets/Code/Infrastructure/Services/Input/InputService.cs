@@ -5,13 +5,13 @@ using VContainer.Unity;
 
 namespace Infrastructure.Services.Input {
    public class InputService : IInputService, IDisposable, ITickable {
-      private readonly IRender  _render;
       private readonly Controls _controls;
+      private readonly IRender  _render;
 
       public bool    Enabled  { get; private set; }
       public Vector2 MoveDir  { get; private set; }
       public Vector2 AimPos   { get; private set; }
-      public bool    Shooting { get; private set; }
+      public bool    Attack { get; private set; }
       public bool    Interact { get; private set; }
 
 
@@ -21,7 +21,9 @@ namespace Infrastructure.Services.Input {
          _controls = new Controls();
       }
 
-      public void Dispose() => _controls.Dispose();
+      public void Dispose() {
+         _controls.Dispose();
+      }
 
 
 
@@ -38,9 +40,9 @@ namespace Infrastructure.Services.Input {
 
 
       public void Tick() {
-         MoveDir  = Enabled ? _controls.Player.Move.ReadValue<Vector2>() : Vector2.zero;
-         AimPos   = Enabled ? _render.Camera.ScreenToWorldPoint(_controls.Player.Aim.ReadValue<Vector2>()) : Vector2.zero;
-         Shooting = Enabled && _controls.Player.Shoot.IsInProgress();
+         MoveDir = Enabled ? _controls.Player.Move.ReadValue<Vector2>() : Vector2.zero;
+         AimPos = Enabled ? _render.Camera.ScreenToWorldPoint(_controls.Player.Aim.ReadValue<Vector2>()) : Vector2.zero;
+         Attack = Enabled && _controls.Player.Shoot.IsInProgress();
          Interact = Enabled && _controls.Player.Interact.WasPressedThisFrame();
       }
    }

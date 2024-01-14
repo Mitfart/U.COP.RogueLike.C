@@ -13,14 +13,15 @@ namespace Extentions {
          Matrix4x4? matrix        = null,
          float      fillOpacity   = FILL_OPACITY_SCALE,
          float      borderOpacity = BORDER_OPACITY_SCALE
-      )
-         => DrawFilled(
+      ) {
+         DrawFilled(
             matrix ?? Matrix4x4.identity,
             fillOpacity,
             borderOpacity,
             () => Gizmos.DrawCube(Vector3.zero, size),
             () => Gizmos.DrawWireCube(Vector3.zero, size)
          );
+      }
 
       public static void DrawFilledBox(
          Vector3     size,
@@ -29,13 +30,14 @@ namespace Extentions {
          Vector3?    scale         = null,
          float       fillOpacity   = FILL_OPACITY_SCALE,
          float       borderOpacity = BORDER_OPACITY_SCALE
-      )
-         => DrawFilledBox(
+      ) {
+         DrawFilledBox(
             size,
             Matrix4x4.TRS(position, rotation ?? Quaternion.identity, scale ?? Vector3.zero),
             fillOpacity,
             borderOpacity
          );
+      }
 
 
 
@@ -44,14 +46,15 @@ namespace Extentions {
          Matrix4x4? matrix        = null,
          float      fillOpacity   = FILL_OPACITY_SCALE,
          float      borderOpacity = BORDER_OPACITY_SCALE
-      )
-         => DrawFilled(
+      ) {
+         DrawFilled(
             matrix ?? Matrix4x4.identity,
             fillOpacity,
             borderOpacity,
             () => Gizmos.DrawSphere(Vector3.zero, radius),
             () => Gizmos.DrawWireSphere(Vector3.zero, radius)
          );
+      }
 
       public static void DrawFilledSphere(
          float       radius,
@@ -60,13 +63,14 @@ namespace Extentions {
          Vector3?    scale         = null,
          float       fillOpacity   = FILL_OPACITY_SCALE,
          float       borderOpacity = BORDER_OPACITY_SCALE
-      )
-         => DrawFilledSphere(
+      ) {
+         DrawFilledSphere(
             radius,
             Matrix4x4.TRS(position, rotation ?? Quaternion.identity, scale ?? Vector3.zero),
             fillOpacity,
             borderOpacity
          );
+      }
 
 
 
@@ -92,7 +96,7 @@ namespace Extentions {
          SetColorAlpha(a);
       }
 
-      
+
 
       public static void SetColorAlpha(float opacity) {
          Color col = Gizmos.color;

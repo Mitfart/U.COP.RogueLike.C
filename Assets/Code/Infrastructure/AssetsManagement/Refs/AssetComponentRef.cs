@@ -7,13 +7,8 @@ using Object = UnityEngine.Object;
 namespace Infrastructure.AssetsManagement.Refs {
    [Serializable]
    public class AssetComponentRef<T> : AssetRef<GameObject> where T : Component {
-      public new T Asset => _cashedAsset ??= base.Asset.GetComponent<T>();
       private    T _cashedAsset;
-
-#if UNITY_EDITOR
-      public new T EditorAsset => _cashedEditorAsset ??= !base.editorAsset.IsUnityNull() ? base.editorAsset.GetComponent<T>() : null;
-      private    T _cashedEditorAsset;
-#endif
+      public new T Asset => _cashedAsset ??= base.Asset.GetComponent<T>();
 
 
 
@@ -22,8 +17,7 @@ namespace Infrastructure.AssetsManagement.Refs {
 
 
       public override bool ValidateAsset(Object obj) {
-         return obj is GameObject go
-             && go.TryGetComponent(out T _);
+         return obj is GameObject go && go.TryGetComponent(out T _);
       }
 
       public override bool ValidateAsset(string mainAssetPath) {
@@ -33,5 +27,10 @@ namespace Infrastructure.AssetsManagement.Refs {
          return false;
 #endif
       }
+
+#if UNITY_EDITOR
+      public  T EditorAsset => _cashedEditorAsset ??= !editorAsset.IsUnityNull() ? editorAsset.GetComponent<T>() : null;
+      private T _cashedEditorAsset;
+#endif
    }
 }

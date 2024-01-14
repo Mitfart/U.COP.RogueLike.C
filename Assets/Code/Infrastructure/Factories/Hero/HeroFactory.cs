@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Infrastructure.AssetsManagement;
 using UnityEngine;
 
@@ -19,14 +18,8 @@ namespace Infrastructure.Factories.Hero {
          _heroes = new List<GameObject>();
       }
 
-      public async Task Spawn(Vector3 at) {
-         GameObject heroIns = await
-            Assets.Ins<GameObject>(
-               "HERO",
-               at,
-               Quaternion.identity,
-               Container(_CONTAINER_NAME)
-            );
+      public void Spawn(Vector3 at) {
+         var heroIns = Assets.Ins<GameObject>("HERO", at, Quaternion.identity, Container(_CONTAINER_NAME));
 
          _heroes.Add(heroIns);
       }

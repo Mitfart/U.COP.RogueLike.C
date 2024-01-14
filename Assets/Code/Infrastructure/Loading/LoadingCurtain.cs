@@ -12,21 +12,33 @@ namespace Infrastructure.Loading {
 
 
 
-      private void Start() => ZeroPivotX();
+      private void Start() {
+         ZeroPivotX();
+      }
 
 
-      [Button] public Task Begin() => Fade(fade: 1);
-      [Button] public Task End()   => Fade(fade: 0);
+      [Button]
+      public Task Begin() {
+         return Fade(1);
+      }
 
-      [Button] public Task Progress(float progress) => null;
+      [Button]
+      public Task End() {
+         return Fade(0);
+      }
 
-      
-      private Task Fade(float fade)
-         => canvasGroup
-           .DOFade(fade, duration)
-           .SetEase(ease)
-           .AsyncWaitForCompletion();
+      [Button]
+      public Task Progress(float progress) {
+         return null;
+      }
 
-      private void ZeroPivotX() => root.pivot = new Vector2(x: 0f, root.pivot.y);
+
+      private Task Fade(float fade) {
+         return canvasGroup.DOFade(fade, duration).SetEase(ease).AsyncWaitForCompletion();
+      }
+
+      private void ZeroPivotX() {
+         root.pivot = new Vector2(0f, root.pivot.y);
+      }
    }
 }

@@ -5,7 +5,7 @@ namespace Infrastructure.Services.Input {
       bool    Enabled  { get; }
       Vector2 MoveDir  { get; }
       Vector2 AimPos   { get; }
-      bool    Shooting { get; }
+      bool    Attack   { get; }
       bool    Interact { get; }
 
       void Enable();

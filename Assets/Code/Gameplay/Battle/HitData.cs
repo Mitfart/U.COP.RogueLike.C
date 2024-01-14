@@ -1,5 +1,6 @@
-using Gameplay.Battle.Areas.Hit;
-using Gameplay.Battle.Areas.Hurt;
+using Gameplay.Battle.Senders.Hit;
+using Gameplay.Battle.Senders.Hurt;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Gameplay.Battle {
@@ -13,14 +14,10 @@ namespace Gameplay.Battle {
 
       public Entity Dealer => _hurtArea.Receiver.Owner;
       public Entity Taker  => _hitArea.Receiver.Owner;
-      
 
 
-      public HitData(
-         RaycastHit2D hitData,
-         HurtArea     hurtArea,
-         HitArea      hitArea
-      ) {
+
+      public HitData(RaycastHit2D hitData, HurtArea hurtArea, HitArea hitArea) {
          _data     = hitData;
          _hurtArea = hurtArea;
          _hitArea  = hitArea;
@@ -28,6 +25,8 @@ namespace Gameplay.Battle {
 
 
 
-      public override string ToString() => $"[Hit] {Dealer.name} >>> {Taker.name} - [Point: {Point} | Normal: {Normal}]";
+      public override string ToString()   => $"<b>[Hit]</b> {DealerName()} ->>>- {TakerName()} - [ Point: {Point} | Normal: {Normal} ]";
+      private         string DealerName() => Dealer.IsUnityNull() ? "UNKNOWN_Dealer" : Dealer.name;
+      private         string TakerName()  => Taker.IsUnityNull() ? "UNKNOWN_Taker" : Taker.name;
    }
 }
