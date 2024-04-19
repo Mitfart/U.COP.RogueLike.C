@@ -1,63 +1,92 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Gameplay.Data {
-   public abstract class Receiver<T> : MonoBehaviour {
-      public event Action<T> OnReceive;
+namespace Data {
+   public abstract class Receiver<TData, TSender, TReceiver> : Receiver<TData>
+      where TSender : Sender<TData, TSender, TReceiver> //
+      where TReceiver : Receiver<TData, TSender, TReceiver> {
+      [SerializeField] private List<TReceiver> subReceivers = new();
+      [SerializeField] private List<TSender>   senders      = new();
 
-      [SerializeField] private Entity          owner;
-      [SerializeField] private List<Sender<T>> senders = new();
+      public TReceiver Parent { get; private set; }
 
-      public Entity                 Owner   => owner;
-      public IEnumerable<Sender<T>> Senders => senders;
+      public IEnumerable<TReceiver> SubReceivers => subReceivers;
+      public IEnumerable<TSender>   Senders      => senders;
+
+      public override Entity Owner => Parent.IsUnityNull() ? owner : Parent.Owner;
 
 
 
       private void Awake() {
+         InitSubReceivers();
          InitSenders();
       }
 
       protected void OnValidate() {
-         senders = senders.ToHashSet().ToList();
+         senders = Enumerable.ToHashSet(senders).ToList();
       }
 
 
 
-      public void Add(Sender<T> sender) {
+      public void Add(TSender sender) {
          senders.Add(sender);
-         sender.SetOwner(this);
+         sender.SetOwner((TReceiver)this);
       }
 
-      public void Remove(Sender<T> sender) {
+      public void Remove(TSender sender) {
          senders.Remove(sender);
          sender.SetOwner(null);
       }
 
 
-      public void Add(Receiver<T> receiver) {
-         if (receiver == this) throw new Exception("Cant Add self!");
+      public void Add(TReceiver subReceiver) {
+         if (subReceiver == this)
+            throw new Exception("Cant Add self!");
 
-         receiver.OnReceive += Receive;
+         subReceivers.Add(subReceiver);
+         subReceiver.OnReceive += Receive;
+         subReceiver.Parent    =  (TReceiver)this;
       }
 
-      public void Remove(Receiver<T> receiver) {
-         if (receiver == this) throw new Exception("Cant Remove self!");
+      public void Remove(TReceiver subReceiver) {
+         if (subReceiver == this)
+            throw new Exception("Cant Remove self!");
 
-         receiver.OnReceive -= Receive;
-      }
-
-
-
-      public virtual void Receive(T data) {
-         OnReceive?.Invoke(data);
+         subReceivers.Remove(subReceiver);
+         subReceiver.OnReceive -= Receive;
+         subReceiver.Parent    =  null;
       }
 
 
 
       private void InitSenders() {
-         foreach (Sender<T> sender in Senders) sender.SetOwner(this);
+         foreach (TSender sender in Senders)
+            sender.SetOwner((TReceiver)this);
+      }
+
+      private void InitSubReceivers() {
+         foreach (TReceiver subReceiver in subReceivers) {
+            subReceiver.owner     =  owner;
+            subReceiver.OnReceive += Receive;
+         }
+      }
+   }
+
+
+   public abstract class Receiver<TData> : MonoBehaviour {
+      public event Action<TData> OnReceive;
+
+      [SerializeField] protected Entity owner;
+
+      public virtual Entity Owner => owner;
+
+
+
+      public virtual void Receive(TData data) {
+         OnReceive?.Invoke(data);
       }
    }
 }

@@ -127,6 +127,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 706228904360994751, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_keepAlive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_background
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_graphyMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_enableOnStartup
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_fpsGraphResolution
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_ramGraphResolution
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 706228904376348373, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
+      propertyPath: m_advancedModuleState
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2175984771070104436, guid: fcdda5dc3f04e3f40908cb6bbfe43a48, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

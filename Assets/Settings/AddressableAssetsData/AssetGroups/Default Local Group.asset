@@ -22,8 +22,63 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f71c515242fc1b4dafa7ad414d636d2
-    m_Address: Assets/Prefabs/Bullet.prefab
+  - m_GUID: 97d7f6b8da0249547963bb49a397eb41
+    m_Address: MAIN_MENU
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39957fd6cf13f7d4ea7c6876f422b3cf
+    m_Address: AI_EGGER
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ddf8cd348e2ee34f9d5fde7f7871d67
+    m_Address: AI_SHOOTER
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb3022a85f6e8ad48a3929d8d2684eb9
+    m_Address: AI_WALKER
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39abb2ae3d3c8a742bb777e36a006b52
+    m_Address: 0_LOCATION_PROTO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95110014ed67bfc44b0790339f6be17d
+    m_Address: DOOR
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcdda5dc3f04e3f40908cb6bbfe43a48
+    m_Address: BOOT
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6409c691ca8bea64f867d5e5a191d791
+    m_Address: LOADING_CURTAIN
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57f6b6fea0493c2419e14e43cd30766f
+    m_Address: RENDER
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 424121d977791f94db3cf5878979ca9d
+    m_Address: HERO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28a09d79cb8e816408c661a35b6129c3
+    m_Address: DROPPED_ITEM
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f99f3b2c1df38be49b5b9cdef94d646b
+    m_Address: CHEST_SM
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -33,6 +33,21 @@ namespace Structs.Ranged {
 
 
 
+      public Ranged(
+         float min,
+         float max,
+         float minEdge = 0,
+         float maxEdge = 1,
+         bool  rounded = false
+      ) {
+         this.min     = min;
+         this.max     = max;
+         this.minEdge = minEdge;
+         this.maxEdge = maxEdge;
+         this.rounded = rounded;
+      }
+
+
       public float Clamp(float value) => Mathf.Clamp(value, Min, Max);
       public int   Clamp(int   value) => Mathf.RoundToInt(Clamp((float)value));
 

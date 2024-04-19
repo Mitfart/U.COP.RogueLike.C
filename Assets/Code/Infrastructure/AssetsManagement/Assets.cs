@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -6,24 +7,15 @@ using Object = UnityEngine.Object;
 
 namespace Infrastructure.AssetsManagement {
    public sealed class Assets : IAssets {
-      public T Ins<T>(
-         object      key,
-         Vector3     at     = default,
-         Quaternion? rot    = null,
-         Transform   parent = null
-      )
-         => Ins(key, at, rot, parent)
-           .TryGetComponent(out T component)
+      public T Ins<T>(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null) {
+         return InsAsync(key, at, rot, parent).WaitForCompletion().TryGetComponent(out T component)
             ? component
             : throw new NullReferenceException($"Can't find component {nameof(T)}");
+      }
 
-      public GameObject Ins(
-         object      key,
-         Vector3     at     = default,
-         Quaternion? rot    = null,
-         Transform   parent = null
-      )
-         => Addressables.InstantiateAsync(key, at, rot ?? Quaternion.identity, parent).WaitForCompletion();
+      public GameObject Ins(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null) {
+         return InsAsync(key, at, rot, parent).WaitForCompletion();
+      }
 
 
 
@@ -32,12 +24,28 @@ namespace Infrastructure.AssetsManagement {
          Vector3     at     = default,
          Quaternion? rot    = null,
          Transform   parent = null
-      )
-         => Addressables.InstantiateAsync(key, at, rot ?? Quaternion.identity, parent);
+      ) {
+         return Addressables.InstantiateAsync(key, at, rot ?? Quaternion.identity, parent);
+      }
+
+      public async Task<T> InsAsync<T>(
+         object      key,
+         Vector3     at     = default,
+         Quaternion? rot    = null,
+         Transform   parent = null
+      ) {
+         GameObject ins = await Addressables.InstantiateAsync(key, at, rot ?? Quaternion.identity, parent).Task;
+
+         return ins.TryGetComponent(out T component)
+            ? component
+            : throw new NullReferenceException($"Can't find component {nameof(T)}");
+      }
 
 
 
-      public AsyncOperationHandle<T> Load<T>(object key) where T : Object => Addressables.LoadAssetAsync<T>(key);
+      public AsyncOperationHandle<T> Load<T>(object key) where T : Object {
+         return Addressables.LoadAssetAsync<T>(key);
+      }
 
       public void Unload(object key) {
          // @formatter:off

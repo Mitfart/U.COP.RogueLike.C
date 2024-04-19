@@ -11,7 +11,7 @@ namespace Infrastructure.Services.Input {
       public bool    Enabled  { get; private set; }
       public Vector2 MoveDir  { get; private set; }
       public Vector2 AimPos   { get; private set; }
-      public bool    Attack { get; private set; }
+      public bool    Attack   { get; private set; }
       public bool    Interact { get; private set; }
 
 

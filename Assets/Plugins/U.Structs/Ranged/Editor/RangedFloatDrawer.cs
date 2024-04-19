@@ -6,9 +6,9 @@ namespace Structs.Ranged.Editor {
    public class RangedFloatDrawer : PropertyDrawer {
       private const string _MIN         = "min";
       private const string _MAX         = "max";
-      private const string _ROUNDED     = "rounded";
       private const string _MIN_EDGE    = "minEdge";
       private const string _MAX_EDGE    = "maxEdge";
+      private const string _ROUNDED     = "rounded";
       private const float  _HEIGHT      = 18;
       private const float  _FLOAT_WIDTH = 45;
       private const float  _GAP         = 5;
@@ -23,31 +23,32 @@ namespace Structs.Ranged.Editor {
 
          SerializedProperty minProp     = property.FindPropertyRelative(_MIN);
          SerializedProperty maxProp     = property.FindPropertyRelative(_MAX);
-         SerializedProperty roundedProp = property.FindPropertyRelative(_ROUNDED);
          SerializedProperty minEdgeProp = property.FindPropertyRelative(_MIN_EDGE);
          SerializedProperty maxEdgeProp = property.FindPropertyRelative(_MAX_EDGE);
+         SerializedProperty roundedProp = property.FindPropertyRelative(_ROUNDED);
 
-         float               min                 = minProp.floatValue;
-         float               max                 = maxProp.floatValue;
-         bool                round               = roundedProp.boolValue;
-         float               minEdge             = minEdgeProp.floatValue;
-         float               maxEdge             = maxEdgeProp.floatValue;
-         RangeEdgesAttribute rangeEdgesAttribute = attribute as RangeEdgesAttribute ?? new RangeEdgesAttribute(minEdge, maxEdge);
+         float min     = minProp.floatValue;
+         float max     = maxProp.floatValue;
+         float minEdge = minEdgeProp.floatValue;
+         float maxEdge = maxEdgeProp.floatValue;
+         bool  round   = roundedProp.boolValue;
+         RangeEdgesAttribute rangeEdgesAttribute
+            = attribute as RangeEdgesAttribute ?? new RangeEdgesAttribute(minEdge, maxEdge);
 
-         var ranged = new Ranged {
-            Min     = min,
-            Max     = max,
-            MinEdge = rangeEdgesAttribute.Min,
-            MaxEdge = rangeEdgesAttribute.Max,
-            rounded = round
-         };
+         var ranged = new Ranged(
+            min,
+            max,
+            rangeEdgesAttribute.Min,
+            rangeEdgesAttribute.Max,
+            round
+         );
          Draw(position, ref ranged);
 
+         minEdgeProp.floatValue = ranged.MinEdge;
+         maxEdgeProp.floatValue = ranged.MaxEdge;
          minProp.floatValue     = ranged.Min;
          maxProp.floatValue     = ranged.Max;
          roundedProp.boolValue  = ranged.rounded;
-         minEdgeProp.floatValue = ranged.MinEdge;
-         maxEdgeProp.floatValue = ranged.MaxEdge;
 
          EditorGUI.indentLevel = indent;
 

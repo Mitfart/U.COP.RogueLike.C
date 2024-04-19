@@ -1,5 +1,5 @@
 using StateMachine;
 
 namespace Infrastructure.GameSM {
-   public class GameStateMachine : StateMachine<GameState, GameStateMachine> { }
+   public class GameStateMachine : StateMachine<BaseGameState, GameStateMachine> { }
 }

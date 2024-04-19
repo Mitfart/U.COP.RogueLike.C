@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Infrastructure.AssetsManagement {
@@ -6,7 +7,20 @@ namespace Infrastructure.AssetsManagement {
       T          Ins<T>(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null);
       GameObject Ins(object    key, Vector3 at = default, Quaternion? rot = null, Transform parent = null);
 
-      AsyncOperationHandle<GameObject> InsAsync(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null);
+
+      public Task<T> InsAsync<T>(
+         object      key, //
+         Vector3     at     = default,
+         Quaternion? rot    = null,
+         Transform   parent = null
+      );
+
+      AsyncOperationHandle<GameObject> InsAsync(
+         object      key, //
+         Vector3     at     = default,
+         Quaternion? rot    = null,
+         Transform   parent = null
+      );
 
       AsyncOperationHandle<T> Load<T>(object key) where T : Object;
       void                    Unload(object  key);

@@ -1,13 +1,33 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Gameplay.Data {
+namespace Data {
    public abstract class Listener<TData> : MonoBehaviour {
-      private Receiver<TData> _receiver;
+      [SerializeField] private Receiver<TData> receiver;
 
-      private void Awake()     => _receiver = GetComponent<Receiver<TData>>();
-      private void OnEnable()  => _receiver.OnReceive += Receive;
-      private void OnDisable() => _receiver.OnReceive -= Receive;
+      public Entity Owner => receiver.Owner;
 
-      protected abstract void Receive(TData data);
+
+
+      private void OnEnable() {
+         receiver.OnReceive += Listen;
+      }
+
+      private void OnDisable() {
+         receiver.OnReceive -= Listen;
+      }
+
+      public virtual void SetOwner(Receiver<TData> owner) {
+         if (!receiver.IsUnityNull())
+            receiver.OnReceive -= Listen;
+
+         receiver = owner;
+
+         receiver.OnReceive += Listen;
+      }
+
+
+
+      protected abstract void Listen(TData data);
    }
 }

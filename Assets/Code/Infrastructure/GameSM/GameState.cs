@@ -1,14 +1,9 @@
 ﻿using StateMachine;
 
 namespace Infrastructure.GameSM {
-   public abstract class GameState : IState<GameState, GameStateMachine>, IEnterableState, IExitableState {
-      public GameStateMachine StateMachine { get; }
-
-      protected GameState(GameStateMachine gameStateMachine) {
-         StateMachine = gameStateMachine;
-      }
+   public abstract class GameState : BaseGameState, IEnterableState {
+      protected GameState(GameStateMachine gameStateMachine) : base(gameStateMachine) { }
 
       public abstract void Enter();
-      public virtual  void Exit() { }
    }
 }

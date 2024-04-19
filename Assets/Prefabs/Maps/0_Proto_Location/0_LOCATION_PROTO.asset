@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80542a44a278438c84ee116a9bf7885c, type: 3}
+  m_Name: 0_LOCATION_PROTO
+  m_EditorClassIdentifier: 
+  title: Proto
+  color: {r: 0.13679248, g: 0.66568446, b: 1, a: 0}
+  rooms:
+  - m_AssetGUID: c920567c752ed3346b1c7e90d4f4eb68
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

@@ -1,15 +1,20 @@
 using System;
 using UnityEngine;
 
-public static class NAPhysics2D {
+public static class NaPhysics2D {
    private const int _START_SIZE = 16;
 
-   private static Collider2D[] _results = new Collider2D[_START_SIZE];
+   private static Collider2D[] _Results = new Collider2D[_START_SIZE];
 
 
 
    public static void ForAllInCircle(Action<Collider2D> action, Vector2 origin, float radius, int layerMask) {
-      int size = Physics2D.OverlapCircleNonAlloc(origin, radius, _results, layerMask);
+      int size = Physics2D.OverlapCircleNonAlloc(
+         origin, //
+         radius,
+         _Results,
+         layerMask
+      );
 
       ResizeForFill(size);
       Do(action, size);
@@ -19,11 +24,11 @@ public static class NAPhysics2D {
 
    private static void Do(Action<Collider2D> action, int @for) {
       for (var i = 0; i < @for; i++)
-         action?.Invoke(_results[i]);
+         action?.Invoke(_Results[i]);
    }
 
    private static void ResizeForFill(int size) {
-      while (size >= _results.Length)
-         Array.Resize(ref _results, _results.Length * 2);
+      while (size >= _Results.Length)
+         Array.Resize(ref _Results, _Results.Length * 2);
    }
 }

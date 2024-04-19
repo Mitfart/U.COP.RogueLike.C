@@ -1,10 +1,19 @@
 using UnityEngine;
 
-namespace Gameplay.Data {
-   public abstract class Sender<TData> : MonoBehaviour {
-      public Receiver<TData> Receiver { get; private set; }
+namespace Data {
+   public abstract class Sender<TData, TSender, TReceiver> : MonoBehaviour
+      where TSender : Sender<TData, TSender, TReceiver> //
+      where TReceiver : Receiver<TData, TSender, TReceiver> {
+      public TReceiver Receiver { get; private set; }
 
-      public virtual void SetOwner(Receiver<TData> owner) => Receiver = owner;
-      public virtual void Send(TData               data)  => Receiver.Receive(data);
+      public Entity Owner => Receiver.Owner;
+
+      public void SetOwner(TReceiver owner) {
+         Receiver = owner;
+      }
+
+      public void Send(TData data) {
+         Receiver.Receive(data);
+      }
    }
 }

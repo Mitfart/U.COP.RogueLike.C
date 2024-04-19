@@ -1,27 +1,36 @@
-﻿using System.Collections.Generic;
-using Infrastructure.AssetsManagement;
+﻿using Infrastructure.AssetsManagement;
+using Unity.VisualScripting;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace Infrastructure.Factories.Hero {
    public class HeroFactory : Factory {
       private const string _CONTAINER_NAME = "Heroes";
 
-
-
-      private readonly List<GameObject> _heroes;
-
-      public IEnumerable<GameObject> Heroes => _heroes;
+      public Units.Hero.Hero Hero { get; private set; }
 
 
 
-      public HeroFactory(IAssets assets) : base(assets) {
-         _heroes = new List<GameObject>();
+      public HeroFactory(IAssets assets, IObjectResolver di) : base(assets, di) {
+         InsHero();
       }
 
-      public void Spawn(Vector3 at) {
-         var heroIns = Assets.Ins<GameObject>("HERO", at, Quaternion.identity, Container(_CONTAINER_NAME));
+      public Units.Hero.Hero Spawn(Vector3 at) {
+         if (Hero.IsUnityNull())
+            InsHero();
 
-         _heroes.Add(heroIns);
+         Hero.entity.Position = at;
+         return Hero;
+      }
+
+      private Units.Hero.Hero InsHero() {
+         Hero = assets.Ins<Units.Hero.Hero>(
+            "HERO",
+            parent: Container(_CONTAINER_NAME)
+         );
+         di.InjectGameObject(Hero.gameObject);
+         return Hero;
       }
    }
 }

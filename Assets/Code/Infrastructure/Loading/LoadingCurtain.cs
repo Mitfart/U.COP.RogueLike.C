@@ -1,14 +1,15 @@
 using System.Threading.Tasks;
+using Attributes.ReadOnly;
 using DG.Tweening;
 using EasyButtons;
 using UnityEngine;
 
 namespace Infrastructure.Loading {
    public class LoadingCurtain : MonoBehaviour, ILoadingCurtain {
-      public RectTransform root;
-      public CanvasGroup   canvasGroup;
-      public float         duration;
-      public Ease          ease;
+      public              RectTransform root;
+      public              CanvasGroup   canvasGroup;
+      public              float         duration;
+      [SpaceAfter] public Ease          ease;
 
 
 

@@ -32,7 +32,7 @@ namespace StateMachine {
       private TState ChangeState<TState>() where TState : class, TStateContract {
          (_currentState as IExitableState)?.Exit();
 
-         var state = GetState<TState>();
+         TState state = GetState<TState>();
          _currentState = state;
 
          return state;

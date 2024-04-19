@@ -7,6 +7,11 @@ namespace Structs.Optional {
       public T    value;
       public bool enabled;
 
-      public T ValueOrDefault() => enabled ? value : default;
+      public Optional(T startValue = default, bool enabled = false) {
+         value        = startValue;
+         this.enabled = enabled;
+      }
+
+      public T ValueOrDefault(T def = default) => enabled ? value : def;
    }
 }

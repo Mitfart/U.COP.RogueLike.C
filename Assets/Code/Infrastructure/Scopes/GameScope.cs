@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using Envirenment.Locations;
 using Extentions;
-using Gameplay.Level;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factories;
+using Infrastructure.Factories.Enemy;
 using Infrastructure.Factories.Hero;
+using Infrastructure.Factories.Items;
+using Infrastructure.Factories.Level;
+using Infrastructure.Factories.UIFactory;
 using Infrastructure.GameSM;
 using Infrastructure.GameSM.States;
 using Infrastructure.Loading;
@@ -79,7 +83,12 @@ namespace Infrastructure.Scopes {
       }
 
       private void RegFactories() {
+         Reg<UIFactory>();
+         Reg<LevelFactory>();
+         Reg<EnemiesFactory>();
          Reg<HeroFactory>();
+         Reg<ItemsFactory>();
+         return;
 
 
          void Reg<TFactory>() where TFactory : Factory {
@@ -92,7 +101,7 @@ namespace Infrastructure.Scopes {
          _di.Register<GameStateMachine>(Lifetime.Singleton);
          _di.RegisterBuildCallback(
             r => {
-               var states = r.Resolve<IReadOnlyList<GameState>>();
+               var states = r.Resolve<IReadOnlyList<BaseGameState>>();
                r.Resolve<GameStateMachine>().RegisterStates(states);
             }
          );
@@ -100,11 +109,14 @@ namespace Infrastructure.Scopes {
 
       private void RegStates() {
          Reg<BootstrapState>();
+         Reg<StartGameState>();
+         Reg<LoadLevelState>();
+         Reg<GameplayState>();
          return;
 
 
-         void Reg<TState>() where TState : GameState {
-            _di.Register<GameState, TState>(Lifetime.Singleton);
+         void Reg<TState>() where TState : BaseGameState {
+            _di.Register<BaseGameState, TState>(Lifetime.Singleton);
          }
       }
    }
