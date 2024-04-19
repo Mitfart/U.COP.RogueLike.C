@@ -1,4 +1,4 @@
-using Infrastructure.Factories.UIFactory;
+using Infrastructure.Factories.UI;
 using Infrastructure.Loading;
 using Infrastructure.Services.Input;
 using UI.Menus;

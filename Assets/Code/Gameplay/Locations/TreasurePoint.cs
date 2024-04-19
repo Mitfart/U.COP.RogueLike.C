@@ -1,8 +1,8 @@
-using Envirenment.Interactions.Loot;
+using Interactions.Loot;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Envirenment.Locations {
+namespace Locations {
    public class TreasurePoint : MonoBehaviour, ITreasurePoint {
       [field: SerializeField] public TreasureSize TreasureSize { get; private set; }
 

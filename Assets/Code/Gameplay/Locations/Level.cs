@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-namespace Envirenment.Locations {
+namespace Locations {
    public class Level {
       private readonly List<int> _passedRoomIDs;
 

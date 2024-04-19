@@ -1,12 +1,12 @@
 using Attributes.ReadOnly;
 using DefaultNamespace;
 using DG.Tweening;
-using Envirenment.Interactions.Items;
 using Infrastructure.Factories.Items;
+using Interactions.Items;
 using UnityEngine;
 using VContainer;
 
-namespace Envirenment.Interactions.Loot {
+namespace Interactions.Loot {
    public class Treasure : MonoBehaviour {
       public              LootBag      lootBag;
       public              Interactable interactable;
@@ -34,7 +34,7 @@ namespace Envirenment.Interactions.Loot {
 
 
 
-      private void OpenLoot() {
+      private void OpenLoot(HeroInteractor _) {
          if (_isOpen)
             return;
 

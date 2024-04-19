@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
-using UnityEngine;
 
-namespace Extentions {
+namespace Extensions.AsyncOperation {
    public static class ToTaskExt {
       public static async Task<TOperation> ToTask<TOperation>(this TOperation asyncOperation)
-         where TOperation : AsyncOperation {
+         where TOperation : UnityEngine.AsyncOperation {
          while (!asyncOperation.isDone)
             await Task.Yield();
 

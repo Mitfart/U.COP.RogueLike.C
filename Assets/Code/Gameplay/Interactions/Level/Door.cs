@@ -1,11 +1,11 @@
-using Envirenment.Locations;
 using Infrastructure.Factories.Hero;
 using Infrastructure.GameSM;
 using Infrastructure.GameSM.States;
+using Locations;
 using UnityEngine;
 using VContainer;
 
-namespace Envirenment.Interactions.Level {
+namespace Interactions.Level {
    [RequireComponent(typeof(Interactable))]
    public class Door : MonoBehaviour {
       public Interactable interactable;
@@ -37,7 +37,7 @@ namespace Envirenment.Interactions.Level {
 
 
 
-      private async void EnterRoom() {
+      private async void EnterRoom(HeroInteractor _) {
          if (_enteringRoom)
             return;
 

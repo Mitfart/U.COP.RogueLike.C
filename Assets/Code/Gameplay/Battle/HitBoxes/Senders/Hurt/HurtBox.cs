@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Extentions;
+using Extensions.Gizmos;
 using UnityEngine;
 
 namespace Battle.HitBoxes.Senders.Hurt {

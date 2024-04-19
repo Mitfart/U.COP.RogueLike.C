@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Envirenment.Locations;
 using Infrastructure.AssetsManagement;
+using Locations;
 using VContainer;
 using VContainer.Unity;
 
@@ -15,7 +15,7 @@ namespace Infrastructure.Factories.Enemy {
       public EnemiesFactory(IAssets assets, IObjectResolver resolver) : base(assets, resolver) { }
 
       public Entity Spawn(ISpawnPoint spawnPoint) {
-         var ins = assets.Ins<Entity>( //
+         Entity ins = assets.Ins<Entity>( //
             spawnPoint.Enemy,
             spawnPoint.Position,
             parent: Container(_CONTAINER_NAME, spawnPoint.Enemy.editorAsset.name)

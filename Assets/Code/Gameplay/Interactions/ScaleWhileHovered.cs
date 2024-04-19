@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Envirenment.Interactions {
+namespace Interactions {
    public class ScaleWhileHovered : MonoBehaviour {
       public Interactable interactable;
       public Transform    body;
@@ -22,7 +22,7 @@ namespace Envirenment.Interactions {
 
 
 
-      private void ScaleUp()   => body.DOScale(scale.y, duration);
-      private void ScaleDown() => body.DOScale(scale.x, duration);
+      private void ScaleUp(HeroInteractor   _) => body.DOScale(scale.y, duration);
+      private void ScaleDown(HeroInteractor _) => body.DOScale(scale.x, duration);
    }
 }

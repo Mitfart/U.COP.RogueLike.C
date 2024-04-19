@@ -1,4 +1,3 @@
-using Battle.HitBoxes.Receiver.Hit;
 using Battle.HitBoxes.Senders.Hurt;
 using UnityEngine;
 

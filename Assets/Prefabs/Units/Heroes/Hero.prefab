@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f74deba6e0b4e6389113ed0361fc587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactor: {fileID: 8494756996828448978}
+  heroInteractor: {fileID: 8494756996828448978}
 --- !u!114 &3579105357618103929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,8 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 8825722371886942288}
-  _items:
-  - {fileID: 11400000, guid: fc40f8695501bc64aaabbb56132dbe44, type: 2}
+  items: []
 --- !u!114 &5022529208364156403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4fb2cf52cf4c798433115e4dddde00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 1465502470298403659}
   radius: 20
   mask:
     serializedVersion: 2

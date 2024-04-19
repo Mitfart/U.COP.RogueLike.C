@@ -2,7 +2,7 @@
 using UnityEngine;
 using VContainer;
 
-namespace Extentions {
+namespace Extensions.VContainer {
    public static class RegScriptableExt {
       public static void RegScriptableAsset<TAsset>(this IContainerBuilder di, string path)
          where TAsset : ScriptableObject {

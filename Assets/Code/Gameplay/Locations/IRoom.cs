@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Envirenment.Locations {
+namespace Locations {
    public interface IRoom {
       public RoomType                    Type           { get; }
       public Vector3                     EnterPoint     { get; }

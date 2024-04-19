@@ -1,5 +1,3 @@
-using Units.Behavior.Tree;
-
-namespace Units.Behavior.Nodes {
+namespace Units.Behavior.Tree {
    public class None : Node { }
 }

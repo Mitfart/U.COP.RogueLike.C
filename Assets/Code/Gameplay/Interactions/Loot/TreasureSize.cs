@@ -1,4 +1,4 @@
-namespace Envirenment.Interactions.Loot {
+namespace Interactions.Loot {
    public enum TreasureSize {
       Small,
       Normal,

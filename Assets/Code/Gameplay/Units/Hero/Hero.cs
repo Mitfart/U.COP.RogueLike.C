@@ -1,4 +1,4 @@
-using Envirenment.Interactions.Items;
+using Interactions.Items;
 using UnityEngine;
 
 namespace Units.Hero {

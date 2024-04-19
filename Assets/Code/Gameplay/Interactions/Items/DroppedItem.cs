@@ -2,20 +2,13 @@ using Infrastructure.Factories.Hero;
 using UnityEngine;
 using VContainer;
 
-namespace Envirenment.Interactions.Items {
+namespace Interactions.Items {
    public class DroppedItem : MonoBehaviour {
       public Interactable   interactable;
       public SpriteRenderer render;
       public Item           item;
 
-      private HeroFactory _heroFactory;
 
-
-
-      [Inject]
-      public void Construct(IObjectResolver di) {
-         di.Inject(item);
-      }
 
       private void Start() => UpdateView();
 
@@ -24,8 +17,8 @@ namespace Envirenment.Interactions.Items {
 
 
 
-      private void PickItem() {
-         item.PickItem();
+      private void PickItem(HeroInteractor interactor) {
+         item.PickItem(interactor.hero.inventory);
          Destroy(gameObject);
       }
 

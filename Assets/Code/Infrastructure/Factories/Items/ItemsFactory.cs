@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Envirenment.Interactions.Items;
 using Infrastructure.AssetsManagement;
+using Interactions.Items;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -26,7 +26,7 @@ namespace Infrastructure.Factories.Items {
          ins.item = item;
 
          itemsOnGround.Add(ins);
-         ins.interactable.OnInteract += () => itemsOnGround.Remove(ins);
+         ins.interactable.OnInteract += _ => itemsOnGround.Remove(ins);
 
          return ins;
       }

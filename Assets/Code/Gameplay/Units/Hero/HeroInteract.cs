@@ -1,11 +1,11 @@
-using Envirenment.Interactions;
 using Infrastructure.Services.Input;
+using Interactions;
 using UnityEngine;
 using VContainer;
 
 namespace Units.Hero {
    public class HeroInteract : MonoBehaviour {
-      public Interactor interactor;
+      public HeroInteractor heroInteractor;
 
       private IInputService _input;
 
@@ -13,7 +13,7 @@ namespace Units.Hero {
 
       private void Update() {
          if (_input.Interact)
-            interactor.Interact();
+            heroInteractor.Interact();
       }
 
 

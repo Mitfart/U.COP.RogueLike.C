@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Extentions {
+namespace Extensions.Transform {
    public static class GetDirectionExt {
-      public static Vector2 GetDirection(this Transform transform, Direction direction) {
+      public static Vector2 GetDirection(this UnityEngine.Transform transform, Direction direction) {
          return direction switch {
             Direction.None  => Vector3.zero,
             Direction.Up    => transform.up,

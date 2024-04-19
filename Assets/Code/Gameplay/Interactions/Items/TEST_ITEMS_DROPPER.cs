@@ -4,8 +4,8 @@ using Infrastructure.Factories.Items;
 using UnityEngine;
 using VContainer;
 
-namespace Envirenment.Interactions.Items {
-   public class TEST_ITEMS_DROPPER : MonoBehaviour {
+namespace Interactions.Items {
+   public class TestItemsDropper : MonoBehaviour {
       public                       List<Item> items;
 
 

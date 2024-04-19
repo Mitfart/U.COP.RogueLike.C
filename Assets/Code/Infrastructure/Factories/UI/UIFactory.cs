@@ -4,7 +4,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Infrastructure.Factories.UIFactory {
+namespace Infrastructure.Factories.UI {
    public class UIFactory : Factory {
       private const string _CONTAINER_NAME = "UI";
 
@@ -13,7 +13,7 @@ namespace Infrastructure.Factories.UIFactory {
       public UIFactory(IAssets assets, IObjectResolver di) : base(assets, di) { }
 
       public MainMenu InsMainMenu() {
-         var ins = assets.Ins<MainMenu>( //
+         MainMenu ins = assets.Ins<MainMenu>( //
             "MAIN_MENU",
             Vector3.zero,
             Quaternion.identity,

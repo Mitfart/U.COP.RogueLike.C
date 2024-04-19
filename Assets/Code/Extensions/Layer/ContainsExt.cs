@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Extentions {
+namespace Extensions.Layer {
    public static class ContainsExt {
       public static bool Contains(this in LayerMask mask, Component component) {
          return mask.Contains(component.gameObject);

@@ -1,7 +1,3 @@
-using Envirenment.Interactions.Items;
-using Envirenment.Interactions.Level;
-using Envirenment.Interactions.Loot;
-using Envirenment.Locations;
 using Infrastructure.AssetsManagement;
 using Infrastructure.AssetsManagement.Refs;
 using Infrastructure.Factories.Enemy;
@@ -9,6 +5,10 @@ using Infrastructure.Factories.Hero;
 using Infrastructure.Factories.Items;
 using Infrastructure.Factories.Level;
 using Infrastructure.Loading;
+using Interactions.Items;
+using Interactions.Level;
+using Interactions.Loot;
+using Locations;
 using Unity.VisualScripting;
 using UnityEngine;
 

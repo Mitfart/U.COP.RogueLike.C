@@ -1,4 +1,4 @@
-using Envirenment.Locations;
+using Locations;
 
 namespace Infrastructure.GameSM.States {
    public class StartGameState : GameState {

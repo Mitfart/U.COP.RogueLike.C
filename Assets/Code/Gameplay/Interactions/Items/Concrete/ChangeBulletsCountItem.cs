@@ -1,7 +1,7 @@
 using Battle.Weapons.Attacks;
 using UnityEngine;
 
-namespace Envirenment.Interactions.Items.Concrete {
+namespace Interactions.Items.Concrete {
    [CreateAssetMenu(menuName = "item/new ChangeBulletsCountItem")]
    public class ChangeBulletsCountItem : Item {
       public int amount;

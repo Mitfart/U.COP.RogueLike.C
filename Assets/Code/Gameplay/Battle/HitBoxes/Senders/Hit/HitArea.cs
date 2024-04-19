@@ -1,6 +1,7 @@
 using System;
 using Battle.HitBoxes.Receiver;
-using Extentions;
+using Battle.HitBoxes.Receiver.Hit;
+using Extensions.Gizmos;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

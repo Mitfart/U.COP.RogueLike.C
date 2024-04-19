@@ -3,7 +3,7 @@ using Infrastructure.AssetsManagement.Refs;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Envirenment.Locations {
+namespace Locations {
    public class SpawnPoint : MonoBehaviour, ISpawnPoint {
       [SerializeField] private string                       debugName = "SP";
       [SerializeField] private AssetComponentRef<Transform> enemy;

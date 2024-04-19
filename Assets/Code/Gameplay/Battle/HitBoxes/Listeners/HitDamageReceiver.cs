@@ -1,4 +1,5 @@
 using Battle.HitBoxes.Receiver;
+using Battle.HitBoxes.Receiver.Hit;
 using DefaultNamespace;
 using Units;
 using UnityEngine;

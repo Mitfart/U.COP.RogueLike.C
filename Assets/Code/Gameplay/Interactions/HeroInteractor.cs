@@ -1,9 +1,11 @@
 using System;
+using Units.Hero;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Envirenment.Interactions {
-   public class Interactor : MonoBehaviour {
+namespace Interactions {
+   public class HeroInteractor : MonoBehaviour {
+      public          Hero      hero;
       [Min(0)] public float     radius;
       public          LayerMask mask;
 
@@ -33,7 +35,7 @@ namespace Envirenment.Interactions {
          if (!Hovering)
             return;
 
-         HoveredInteractable.Interact();
+         HoveredInteractable.Interact(this);
          OnInteract?.Invoke(HoveredInteractable);
       }
 
@@ -41,7 +43,7 @@ namespace Envirenment.Interactions {
 
       private Interactable GetClosestInteractable() {
          Interactable closest         = null;
-         var          closestDistance = float.MaxValue;
+         float        closestDistance = float.MaxValue;
 
          foreach (Collider2D current in Physics2D.OverlapCircleAll(transform.Position2D(), radius, mask)) {
             float curDistance = (current.transform.position - transform.position).sqrMagnitude;
@@ -60,26 +62,29 @@ namespace Envirenment.Interactions {
 
 
 
-      private void TryHover(Interactable interactable) {
-         if (Hovered(interactable))
+      private void TryHover(Interactable newInteractable) {
+         if (Hovered(newInteractable))
             return;
 
          if (Hovering)
             Unhover(HoveredInteractable);
 
-         if (!interactable.IsUnityNull())
-            Hover(interactable);
+         if (!newInteractable.IsUnityNull())
+            Hover(newInteractable);
+
+
+         return;
 
 
          void Unhover(Interactable interactable) {
-            interactable.Unhover();
+            interactable.Unhover(this);
             OnUnhover?.Invoke(interactable);
             Hovering            = false;
             HoveredInteractable = null;
          }
 
          void Hover(Interactable interactable) {
-            interactable.Hover();
+            interactable.Hover(this);
             OnHover?.Invoke(interactable);
             Hovering            = true;
             HoveredInteractable = interactable;

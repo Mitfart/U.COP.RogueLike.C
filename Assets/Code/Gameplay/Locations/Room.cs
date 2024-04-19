@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Envirenment.Locations {
+namespace Locations {
    public class Room : MonoBehaviour, IRoom {
       private const float _RADIUS = .1f;
 

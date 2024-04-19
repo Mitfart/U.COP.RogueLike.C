@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Envirenment.Interactions.Items;
+using Interactions.Items;
 using UnityEngine;
 
-namespace Envirenment.Interactions.Loot {
+namespace Interactions.Loot {
    [CreateAssetMenu(menuName = "item/new LootBag")]
    public class LootBag : ScriptableObject {
       [SerializeField] private List<Item> items;

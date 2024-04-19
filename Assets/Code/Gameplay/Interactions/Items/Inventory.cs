@@ -1,24 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Envirenment.Interactions.Items {
+namespace Interactions.Items {
    public class Inventory : MonoBehaviour {
       public Entity owner;
 
-      [SerializeField] private List<Item> _items = new();
+      [SerializeField] private List<Item> items = new();
 
       private void Awake() {
-         foreach (Item item in _items)
+         foreach (Item item in items)
             item.Apply(owner);
       }
 
       public void Pick(Item item) {
-         _items.Add(item);
+         items.Add(item);
          item.Apply(owner);
       }
 
       public void Drop(Item item) {
-         _items.Remove(item);
+         items.Remove(item);
          item.Revoke(owner);
       }
    }

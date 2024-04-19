@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Envirenment.Locations {
+namespace Locations {
    [CreateAssetMenu(menuName = "Level/new Locations Set")]
    public class LocationsSet : ScriptableObject {
       [SerializeField] private List<Location> locations;

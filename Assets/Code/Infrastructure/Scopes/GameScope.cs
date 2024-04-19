@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
-using Envirenment.Locations;
-using Extentions;
+using Extensions.VContainer;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factories;
 using Infrastructure.Factories.Enemy;
 using Infrastructure.Factories.Hero;
 using Infrastructure.Factories.Items;
 using Infrastructure.Factories.Level;
-using Infrastructure.Factories.UIFactory;
+using Infrastructure.Factories.UI;
 using Infrastructure.GameSM;
 using Infrastructure.GameSM.States;
 using Infrastructure.Loading;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Random;
 using Infrastructure.Services.Time;
+using Locations;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -101,7 +101,7 @@ namespace Infrastructure.Scopes {
          _di.Register<GameStateMachine>(Lifetime.Singleton);
          _di.RegisterBuildCallback(
             r => {
-               var states = r.Resolve<IReadOnlyList<BaseGameState>>();
+               IReadOnlyList<BaseGameState> states = r.Resolve<IReadOnlyList<BaseGameState>>();
                r.Resolve<GameStateMachine>().RegisterStates(states);
             }
          );

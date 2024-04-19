@@ -1,4 +1,4 @@
-namespace Envirenment.Locations {
+namespace Locations {
    public enum RoomType {
       Default,
       Secret,

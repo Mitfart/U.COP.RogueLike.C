@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace Extentions {
+namespace Extensions.Transform {
    public static class Rotate2DExt {
       private static Vector3 ZAxis => Vector3.forward;
 
 
 
-      public static Transform Rotate2D(this Transform transform, float by) {
+      public static UnityEngine.Transform Rotate2D(this UnityEngine.Transform transform, float by) {
          transform.Rotate(ZAxis, by);
          return transform;
       }
@@ -23,7 +23,7 @@ namespace Extentions {
 
 
 
-      public static Transform Rotate2D(this Transform transform, Vector2 at) {
+      public static UnityEngine.Transform Rotate2D(this UnityEngine.Transform transform, Vector2 at) {
          transform.rotation = transform.Rotation(at);
          return transform;
       }
@@ -40,7 +40,7 @@ namespace Extentions {
 
 
 
-      private static Quaternion Rotation(this Transform transform, Vector2 at) {
+      private static Quaternion Rotation(this UnityEngine.Transform transform, Vector2 at) {
          return Quaternion.AngleAxis(AngleOf(transform.RotateDir(at)), ZAxis);
       }
 
@@ -48,7 +48,7 @@ namespace Extentions {
          return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
       }
 
-      private static Vector2 RotateDir(this Transform transform, Vector2 at) {
+      private static Vector2 RotateDir(this UnityEngine.Transform transform, Vector2 at) {
          return at - (Vector2)transform.position;
       }
    }

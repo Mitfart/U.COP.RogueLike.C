@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Extentions {
+namespace Extensions.Gizmos {
    public static class UGizmos {
       public const float FILL_OPACITY_SCALE   = .1f;
       public const float BORDER_OPACITY_SCALE = 1f;
@@ -19,8 +19,8 @@ namespace Extentions {
             matrix ?? Matrix4x4.identity,
             fillOpacity,
             borderOpacity,
-            () => Gizmos.DrawCube(origin, size),
-            () => Gizmos.DrawWireCube(origin, size)
+            () => UnityEngine.Gizmos.DrawCube(origin, size),
+            () => UnityEngine.Gizmos.DrawWireCube(origin, size)
          );
       }
 
@@ -37,8 +37,8 @@ namespace Extentions {
             matrix ?? Matrix4x4.identity,
             fillOpacity,
             borderOpacity,
-            () => Gizmos.DrawSphere(origin, radius),
-            () => Gizmos.DrawWireSphere(origin, radius)
+            () => UnityEngine.Gizmos.DrawSphere(origin, radius),
+            () => UnityEngine.Gizmos.DrawWireSphere(origin, radius)
          );
       }
 
@@ -51,10 +51,10 @@ namespace Extentions {
          Action    fill,
          Action    border
       ) {
-         Matrix4x4 m = Gizmos.matrix;
-         float     a = Gizmos.color.a;
+         Matrix4x4 m = UnityEngine.Gizmos.matrix;
+         float     a = UnityEngine.Gizmos.color.a;
 
-         Gizmos.matrix = matrix;
+         UnityEngine.Gizmos.matrix = matrix;
 
          SetColorAlpha(a * fillOpacity);
          fill?.Invoke();
@@ -62,16 +62,16 @@ namespace Extentions {
          SetColorAlpha(a * borderOpacity);
          border?.Invoke();
 
-         Gizmos.matrix = m;
+         UnityEngine.Gizmos.matrix = m;
          SetColorAlpha(a);
       }
 
 
 
       public static void SetColorAlpha(float opacity) {
-         Color col = Gizmos.color;
-         col.a        = opacity;
-         Gizmos.color = col;
+         Color col = UnityEngine.Gizmos.color;
+         col.a                    = opacity;
+         UnityEngine.Gizmos.color = col;
       }
    }
 }

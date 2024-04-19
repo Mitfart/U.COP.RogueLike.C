@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Infrastructure.AssetsManagement.Refs;
 using UnityEngine;
 
-namespace Envirenment.Locations {
+namespace Locations {
    [CreateAssetMenu(menuName = "Level/new Location")]
    public class Location : ScriptableObject {
       [SerializeField] private string                        title;

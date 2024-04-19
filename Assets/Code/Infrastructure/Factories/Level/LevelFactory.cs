@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Envirenment.Interactions.Level;
-using Envirenment.Interactions.Loot;
-using Envirenment.Locations;
 using Infrastructure.AssetsManagement;
+using Interactions.Level;
+using Interactions.Loot;
+using Locations;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using Treasure = Envirenment.Interactions.Loot.Treasure;
+using Treasure = Interactions.Loot.Treasure;
 
 namespace Infrastructure.Factories.Level {
    public class LevelFactory : Factory {
