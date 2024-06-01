@@ -8,12 +8,9 @@ namespace Data {
 
       public Entity Owner => Receiver.Owner;
 
-      public void SetOwner(TReceiver owner) {
-         Receiver = owner;
-      }
+      
+      public void SetOwner(TReceiver owner) => Receiver = owner;
 
-      public void Send(TData data) {
-         Receiver.Receive(data);
-      }
+      public void Send(TData data) => Receiver.Receive(data);
    }
 }

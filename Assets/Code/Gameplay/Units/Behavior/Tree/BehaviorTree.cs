@@ -12,16 +12,10 @@ namespace Units.Behavior.Tree {
       }
 
       [Inject] //
-      public void Inject(IObjectResolver di) {
-         di.Inject(_entry);
-      }
+      public void Inject(IObjectResolver di) => di.Inject(_entry);
 
-      public void Init(Entity entity) {
-         _entry.Init(entity);
-      }
+      public void Init(Entity entity) => _entry.Init(entity);
 
-      public Status Run() {
-         return _entry.Run();
-      }
+      public Status Run() => _entry.Run();
    }
 }

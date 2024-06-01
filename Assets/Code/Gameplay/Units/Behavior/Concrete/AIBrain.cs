@@ -4,9 +4,8 @@ using VContainer;
 
 namespace Units.Behavior.Concrete {
    public abstract class AIBrain : MonoBehaviour {
-      [field: SerializeField] public Entity Self { get; private set; }
-
-      private BehaviorTree _behavior;
+      private                        BehaviorTree _behavior;
+      [field: SerializeField] public Entity       Self { get; private set; }
 
 
 

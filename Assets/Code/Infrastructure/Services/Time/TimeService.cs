@@ -9,12 +9,8 @@
       public float ReverseFixedDelta => 1f / FixedDelta;
 
 
-      public float Elapsed(float from) {
-         return Time - from;
-      }
+      public float Elapsed(float from) => Time - from;
 
-      public bool Pass(float from, float duration) {
-         return Elapsed(from) >= duration;
-      }
+      public bool Pass(float from, float duration) => Elapsed(from) >= duration;
    }
 }

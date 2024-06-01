@@ -8,9 +8,7 @@ namespace Battle.Bullets.Spawners {
 
 
 
-      private void Awake() {
-         _tasks = new Task[spawners.Count];
-      }
+      private void Awake() => _tasks = new Task[spawners.Count];
 
       protected override async Task SpawnPattern(Action<Bullet> onSpawnBullet) {
 #if UNITY_EDITOR

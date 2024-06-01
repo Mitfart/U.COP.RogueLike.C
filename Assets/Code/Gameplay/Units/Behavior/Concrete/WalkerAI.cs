@@ -1,4 +1,4 @@
-using Extensions.Gizmos;
+using Extensions;
 using Movements;
 using Units.Behavior.Components;
 using Units.Behavior.Nodes;
@@ -14,22 +14,6 @@ namespace Units.Behavior.Concrete {
       public         float      viewRadius;
       [Space] public Movement2D movement;
       public         Vector2    waitTime;
-
-
-
-      protected override Node[] CreateBehavior()
-         => new Node[] {
-            new Repeat(
-               new IfHasTarget(
-                  target,
-                  MoveToTarget(), //
-                  IfFoundTarget(
-                     new None(),
-                     MoveRandomly()
-                  )
-               )
-            )
-         };
 
 
 
@@ -51,8 +35,24 @@ namespace Units.Behavior.Concrete {
 
 
 
-      private Node IfFoundTarget(Node @true, Node @false) {
-         return new IfFoundTarget(
+      protected override Node[] CreateBehavior()
+         => new Node[] {
+            new Repeat(
+               new IfHasTarget(
+                  target,
+                  MoveToTarget(), //
+                  IfFoundTarget(
+                     new None(),
+                     MoveRandomly()
+                  )
+               )
+            )
+         };
+
+
+
+      private Node IfFoundTarget(Node @true, Node @false)
+         => new IfFoundTarget(
             target,
             viewRadius,
             team,
@@ -60,7 +60,6 @@ namespace Units.Behavior.Concrete {
             @true,
             @false
          );
-      }
 
       private Node MoveToTarget() => new MoveToTarget(target, movement);
       private Node MoveRandomly() => new MoveRandomly(target, waitTime, viewRadius, movement);

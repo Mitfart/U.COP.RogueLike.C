@@ -16,26 +16,15 @@ namespace Battle.HitBoxes {
       public HitData(Entity dealer, Entity taker, float damage, RaycastHit2D? hitData = null) {
          Dealer = dealer;
          Taker  = taker;
-
          Damage = damage;
-
          Point  = hitData?.point  ?? Taker.Position;
          Normal = hitData?.normal ?? Vector2.up;
       }
 
 
 
-      public override string ToString() {
-         return
-            $"<b>[Hit]</b> {DealerName()} ->>>- {TakerName()} - [ Damage: {Damage} | Point: {Point} | Normal: {Normal} ]";
-      }
-
-      private string DealerName() {
-         return Dealer.IsUnityNull() ? "UNKNOWN_Dealer" : Dealer.name;
-      }
-
-      private string TakerName() {
-         return Taker.IsUnityNull() ? "UNKNOWN_Taker" : Taker.name;
-      }
+      public override string ToString()   => $"<b>[Hit]</b> {DealerName()} ->>>- {TakerName()} - [ Damage: {Damage} | Point: {Point} | Normal: {Normal} ]";
+      private         string DealerName() => Dealer.IsUnityNull() ? "UNKNOWN_Dealer" : Dealer.name;
+      private         string TakerName()  => Taker.IsUnityNull() ? "UNKNOWN_Taker" : Taker.name;
    }
 }

@@ -20,14 +20,9 @@ namespace Units.Behavior.Nodes {
          _prepareTime = prepareTime;
       }
 
-      [Inject]
-      public void Inject(ITimeService time) {
-         _time = time;
-      }
+      [Inject] public void Inject(ITimeService time) => _time = time;
 
-      protected override void OnBegin() {
-         _startTime = _time.Time;
-      }
+      protected override void OnBegin() => _startTime = _time.Time;
 
       protected override Status OnRun() {
          _weaponOwner.Aim(_target.Position);

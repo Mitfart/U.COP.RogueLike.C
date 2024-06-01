@@ -222,9 +222,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a617adb65740ad8106a84c8ea0887d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AttackMethod>k__BackingField: {fileID: 2758555243646498894}
-  <Receiver>k__BackingField: {fileID: 6333627356550904161}
-  <ReloadDuration>k__BackingField: 1
+  sprite: {fileID: 21300000, guid: 1dad6d5514ca9844b8380de87bdacbea, type: 3}
+  attackMethod: {fileID: 2758555243646498894}
+  receiver: {fileID: 6333627356550904161}
+  baseDamage: 1
+  damageMultiplier:
+    value: 1
+    enabled: 0
+  reloadDuration: 0.1
 --- !u!114 &6333627356550904161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +245,6 @@ MonoBehaviour:
   owner: {fileID: 0}
   subReceivers: []
   senders: []
-  <Damage>k__BackingField: 1
 --- !u!114 &1929581569305351270
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,21 +5,21 @@ using UnityEngine;
 
 namespace Units.Hero {
    public class HeroAnimator : MonoBehaviour {
-      public Entity       entity;
+      public Entity entity;
 
-      [Header("Jump into Level")] public Collider2D physicsCollider;
-      public                             float      distance;
-      public                             float      jumpPower;
-      public                             float      duration;
+      [Header(header: "Jump into Level")] public Collider2D physicsCollider;
+      public                                     float      distance;
+      public                                     float      jumpPower;
+      public                                     float      duration;
 
 
 
       public async Task EnterRoom() {
-         entity.gameObject.SetActive(true);
+         entity.gameObject.SetActive(value: true);
          physicsCollider.On();
 
          await entity.GetBody() //
-                     .DOJump(entity.Position + Vector2.right * distance, jumpPower, 1, duration)
+                     .DOJump(entity.Position + Vector2.right * distance, jumpPower, numJumps: 1, duration)
                      .AsyncWaitForCompletion();
       }
 
@@ -27,11 +27,11 @@ namespace Units.Hero {
          physicsCollider.Off();
 
          await entity.GetBody() //
-                     .DOJump(target, jumpPower, 1, duration)
+                     .DOJump(target, jumpPower, numJumps: 1, duration)
                      .AsyncWaitForCompletion();
 
          physicsCollider.On();
-         entity.gameObject.SetActive(false);
+         entity.gameObject.SetActive(value: false);
       }
    }
 }

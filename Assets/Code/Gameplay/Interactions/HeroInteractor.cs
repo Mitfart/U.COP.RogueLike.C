@@ -1,26 +1,26 @@
 using System;
+using Attributes.ReadOnly;
 using Units.Hero;
 using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Interactions {
    public class HeroInteractor : MonoBehaviour {
-      public          Hero      hero;
-      [Min(0)] public float     radius;
-      public          LayerMask mask;
-
       public event Action<Interactable> OnHover;
       public event Action<Interactable> OnUnhover;
       public event Action<Interactable> OnInteract;
 
-      public bool         Hovering            { get; private set; }
-      public Interactable HoveredInteractable { get; private set; }
+      public               Hero      hero;
+      [Min(min: 0)] public float     radius;
+      public               LayerMask mask;
+
+      [field: SerializeField, ReadOnly] public Interactable HoveredInteractable { get; private set; }
+
+      public bool Hovering => !HoveredInteractable.IsUnityNull();
 
 
 
-      private void Update() {
-         TryHover(GetClosestInteractable());
-      }
+      private void Update() => TryHover(GetClosestInteractable());
 
 
 
@@ -79,20 +79,16 @@ namespace Interactions {
          void Unhover(Interactable interactable) {
             interactable.Unhover(this);
             OnUnhover?.Invoke(interactable);
-            Hovering            = false;
             HoveredInteractable = null;
          }
 
          void Hover(Interactable interactable) {
             interactable.Hover(this);
             OnHover?.Invoke(interactable);
-            Hovering            = true;
             HoveredInteractable = interactable;
          }
       }
 
-      private bool Hovered(Interactable interactable) {
-         return interactable == HoveredInteractable;
-      }
+      private bool Hovered(Interactable interactable) => interactable == HoveredInteractable;
    }
 }

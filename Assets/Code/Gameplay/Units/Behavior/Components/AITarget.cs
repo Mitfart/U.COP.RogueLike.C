@@ -20,8 +20,6 @@ namespace Units.Behavior.Components {
          return HasTarget;
       }
 
-      public void Set(Vector2 point) {
-         Point = point;
-      }
+      public void Set(Vector2 point) => Point = point;
    }
 }

@@ -8,12 +8,12 @@ namespace Movements {
       public override Vector2 Direction => agent.velocity.normalized;
       public override Vector2 Velocity  => agent.velocity;
 
+
+
       public override void SetSpeed(float value) {
          base.SetSpeed(value);
          agent.speed = Speed;
       }
-
-
 
       public override void SetDestination(Vector2 destination) {
          if (NavMesh.SamplePosition(destination, out NavMeshHit hit, float.MaxValue, NavMesh.AllAreas)

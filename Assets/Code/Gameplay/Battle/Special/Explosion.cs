@@ -13,8 +13,8 @@ namespace Battle.Special {
 
       [SerializeField] private Optional<Transform> body;
 
-      public          HurtCircle hurtCircle;
-      [Min(0)] public float      duration;
+      public               HurtCircle hurtCircle;
+      [Min(min: 0)] public float      duration;
 
       private ExplosionAnimation _animation;
 

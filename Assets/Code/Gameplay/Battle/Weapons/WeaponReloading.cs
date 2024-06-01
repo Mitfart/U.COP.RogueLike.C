@@ -42,21 +42,16 @@ namespace Battle.Weapons {
          OnStart?.Invoke();
       }
 
-      private void ProcessReload() { //
-         OnProcess?.Invoke(Completion());
-      }
+      private void ProcessReload()
+         => //
+            OnProcess?.Invoke(Completion());
 
       private void EndReload() {
          _weapon.Unblock();
          OnEnd?.Invoke();
       }
 
-      private float Completion() {
-         return _time.Elapsed(_startReloadTime) / _weapon.ReloadDuration;
-      }
-
-      private bool Done() {
-         return _time.Pass(_startReloadTime, _weapon.ReloadDuration);
-      }
+      private float Completion() => Mathf.Clamp01(_time.Elapsed(_startReloadTime) / _weapon.reloadDuration);
+      private bool  Done()       => _time.Pass(_startReloadTime, _weapon.reloadDuration);
    }
 }

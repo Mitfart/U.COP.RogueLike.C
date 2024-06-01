@@ -22,21 +22,14 @@ namespace Battle.Weapons.Attacks {
 
 
 
-      [Inject]
-      public void Construct(IRandomService random) {
-         _random = random;
-      }
+      [Inject] public void Construct(IRandomService random) => _random = random;
 
 
 
-      public override async Task Perform(Weapon weapon) {
-         await spawner.Spawn(bullet => bullet.Init(weapon).Rotate2D(CalcAdditionalSpreadAngle()));
-      }
+      public override async Task Perform(Weapon weapon) => await spawner.Spawn(bullet => bullet.Init(weapon).Rotate2D(CalcAdditionalSpreadAngle()));
 
-
-
-      private float CalcAdditionalSpreadAngle() {
-         return _random.Range(-.5f, .5f) * AdditionalSpreadAngle;
-      }
+      
+      
+      private float CalcAdditionalSpreadAngle() => _random.Range(min: -.5f, max: .5f) * AdditionalSpreadAngle;
    }
 }

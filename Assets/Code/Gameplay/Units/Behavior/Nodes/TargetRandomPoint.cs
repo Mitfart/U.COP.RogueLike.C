@@ -17,10 +17,7 @@ namespace Units.Behavior.Nodes {
          _radius = radius;
       }
 
-      [Inject]
-      public void Inject(IRandomService random) {
-         _random = random;
-      }
+      [Inject] public void Inject(IRandomService random) => _random = random;
 
       protected override void OnBegin() => ChooseRandomPoint();
 

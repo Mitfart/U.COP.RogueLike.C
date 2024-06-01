@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Infrastructure.AssetsManagement.Refs;
 using UnityEngine;
 
@@ -12,5 +13,9 @@ namespace Locations {
       public string                                 Title => title;
       public Color                                  Color => color;
       public IReadOnlyList<AssetComponentRef<Room>> Rooms => rooms;
+      
+      
+      
+      private void OnValidate() => rooms = rooms.ToHashSet().ToList();
    }
 }

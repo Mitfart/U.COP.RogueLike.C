@@ -6,9 +6,7 @@ public class Invertible : MonoBehaviour {
 
 
 
-   private void Update() {
-      CheckRotation();
-   }
+   private void Update() => CheckRotation();
 
 
 
@@ -18,10 +16,9 @@ public class Invertible : MonoBehaviour {
       body.localScale = scale;
    }
 
-   private float Projection() {
-      return Vector2.Dot(
+   private float Projection()
+      => Vector2.Dot(
          direction.AsVector(), //
          body.right
       );
-   }
 }

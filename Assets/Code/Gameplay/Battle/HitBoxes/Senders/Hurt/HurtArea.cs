@@ -10,28 +10,20 @@ namespace Battle.HitBoxes.Senders.Hurt {
    public abstract class HurtArea : HitDataSender<HurtArea, HurtReceiver> {
       public Direction direction = Direction.Up;
 
-      public Optional<float> damageMultiplier = new(1f);
+      [Min(min: 0f)] public float           baseDamage       = 1f;
+      public                Optional<float> damageMultiplier = new(startValue: 1f);
 
       protected LayerMask Layers { get; private set; }
 
 
 
-      private void Awake() {
-         Layers = LayerMask.GetMask("Default", "Environment");
-      }
-
-      private void FixedUpdate() {
-         CheckHit();
-      }
+      private void Awake()       => Layers = LayerMask.GetMask("Default", "Environment");
+      private void FixedUpdate() => CheckHit();
 
 
 
-      private void OnDrawGizmos() {
-         Gizmos.color = Color.red;
-
-         DrawGizmos();
-         DrawDirection();
-      }
+      protected abstract IEnumerable<RaycastHit2D> Cast();
+      protected abstract void                      DrawGizmos();
 
 
 
@@ -49,12 +41,9 @@ namespace Battle.HitBoxes.Senders.Hurt {
          }
       }
 
-
-
       private bool IsHitable(RaycastHit2D hit, out HitArea hitArea) {
          hitArea = null;
          return !Owner.IsUnityNull()
-             && hit
              && !hit.collider.IsUnityNull()
              && !hit.collider.gameObject.IsUnityNull()
              && hit.collider.TryGetComponent(out hitArea)
@@ -64,15 +53,23 @@ namespace Battle.HitBoxes.Senders.Hurt {
              && hitArea.Owner.Team != Owner.Team;
       }
 
-      private HitData CreateHitData(RaycastHit2D hit, HitArea hitArea) {
-         return new HitData(
+      private HitData CreateHitData(RaycastHit2D hit, HitArea hitArea)
+         => new(
             Owner,
             hitArea.Owner,
             damageMultiplier.enabled //
-               ? Receiver.Damage * damageMultiplier.value
-               : Receiver.Damage,
+               ? baseDamage * damageMultiplier.value
+               : baseDamage,
             hit
          );
+
+
+
+      private void OnDrawGizmos() {
+         Gizmos.color = Color.red;
+
+         DrawGizmos();
+         DrawDirection();
       }
 
       private void DrawDirection() {
@@ -81,10 +78,5 @@ namespace Battle.HitBoxes.Senders.Hurt {
          Vector2   dir    = self.GetDirection(direction);
          Gizmos.DrawLine(origin, origin + dir);
       }
-
-
-
-      protected abstract IEnumerable<RaycastHit2D> Cast();
-      protected abstract void                      DrawGizmos();
    }
 }

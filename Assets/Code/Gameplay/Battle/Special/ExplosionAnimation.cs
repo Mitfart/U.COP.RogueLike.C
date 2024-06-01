@@ -7,8 +7,8 @@ using UnityEngine;
 namespace Battle.Special {
    [RequireComponent(typeof(Explosion))]
    public class ExplosionAnimation : MonoBehaviour {
-      public          Ranged animationParts = new(.1f, .25f);
-      [Min(0)] public float  scale          = 2f;
+      public               Ranged animationParts = new(min: .1f, max: .25f);
+      [Min(min: 0)] public float  scale          = 2f;
 
       public Ease beginEase = Ease.InSine;
       public Ease endEase   = Ease.OutSine;
@@ -51,8 +51,6 @@ namespace Battle.Special {
          EndAnimationAbsolute();
       }
 
-      private void EndAnimationAbsolute() {
-         _explosion.Body.localScale = Vector3.zero;
-      }
+      private void EndAnimationAbsolute() => _explosion.Body.localScale = Vector3.zero;
    }
 }

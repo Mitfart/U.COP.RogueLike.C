@@ -11,7 +11,7 @@ namespace Units.Behavior.Components {
       public Transform view;
 
       public async void Explode() {
-         view.gameObject.SetActive(false);
+         view.gameObject.SetActive(value: false);
 
          aiBrain.Off();
          await explosion.Explode();

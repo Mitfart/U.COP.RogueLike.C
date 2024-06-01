@@ -1,8 +1,13 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
 namespace Locations {
    public class Level {
+      public event Action OnEnter;
+      public event Action OnClear;
+      public event Action OnExit;
+
       private readonly List<int> _passedRoomIDs;
 
       public int LocationNum { get; private set; }
@@ -13,7 +18,7 @@ namespace Locations {
       public LocationsSet LocationsSet { get; }
 
       public IReadOnlyList<int> PassedRoomIDs => _passedRoomIDs;
-      public Location           Location      => LocationsSet.Locations[LocationNum]/*[LocationID]*/;
+      public Location           Location      => LocationsSet.Locations[LocationNum] /*[LocationID]*/;
 
 
 
@@ -43,8 +48,26 @@ namespace Locations {
 
 
 
-      public override string ToString() {
-         return $"<color={Location.Color.ToHexString()}>{Location.Title}</color> {LocationNum}:{RoomID}";
+      public void Reset() {
+         LocationNum = 0;
+         LocationID  = 0;
+         RoomID      = 0;
+
+         OnEnter = null;
+         OnClear = null;
+         OnExit  = null;
+
+         Room = null;
+         _passedRoomIDs.Clear();
       }
+
+
+
+      public void InvokeEnterEvent() => OnEnter?.Invoke();
+      public void InvokeClearEvent() => OnClear?.Invoke();
+      public void InvokeExitEvent()  => OnExit?.Invoke();
+
+
+      public override string ToString() => $"<color={Location.Color.ToHexString()}>{Location.Title}</color> {LocationNum}:{RoomID}";
    }
 }

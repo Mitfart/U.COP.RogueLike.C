@@ -21,11 +21,11 @@ namespace Battle.Bullets {
             bulletBody.rotation
          );
 
-         bullet.Source.Receiver.Add(expIns.hurtCircle);
+         bullet.Source.receiver.Add(expIns.hurtCircle);
 
          await expIns.Explode();
 
-         bullet.Source.Receiver.Remove(expIns.hurtCircle);
+         bullet.Source.receiver.Remove(expIns.hurtCircle);
 
          Destroy(expIns.gameObject);
       }

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace DebugTools.Changers.Editor {
-   [CustomEditor(typeof(BaseChanger), true)]
+   [CustomEditor(typeof(BaseChanger), editorForChildClasses: true)]
    public class MonoChangerEditor : UnityEditor.Editor {
       public override void OnInspectorGUI() {
          DrawDefaultInspector();
@@ -11,7 +11,7 @@ namespace DebugTools.Changers.Editor {
          if (target is not BaseChanger script)
             return;
 
-         GUILayout.Space(25f);
+         GUILayout.Space(pixels: 25f);
          GUILayout.BeginHorizontal();
 
          if (GUILayout.Button(nameof(BaseChanger.Change)))

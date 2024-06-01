@@ -6,12 +6,13 @@ namespace Infrastructure.GameSM.States {
 
 
 
-      public StartGameState(GameStateMachine gameStateMachine, LocationsSet locations) : base(gameStateMachine) {
+      public StartGameState(
+         GameStateMachine gameStateMachine,
+         LocationsSet     locations
+      ) : base(gameStateMachine) {
          _locations = locations;
       }
 
-      public override void Enter() {
-         StateMachine.Enter<LoadLevelState, LoadData>(new LoadData(_locations.Locations[0], 0));
-      }
+      public override void Enter() => StateMachine.Enter<LoadLevelState, LoadData>(new LoadData(_locations.Locations[index: 0], id: 0));
    }
 }

@@ -35,8 +35,6 @@ namespace Units.Behavior.Nodes {
          _duration  = _randomService.Range(_rangedDuration.x, _rangedDuration.y);
       }
 
-      protected override Status OnRun() {
-         return _time.Pass(_startTime, _duration) ? Status.Succes : Status.Run;
-      }
+      protected override Status OnRun() => _time.Pass(_startTime, _duration) ? Status.Succes : Status.Run;
    }
 }

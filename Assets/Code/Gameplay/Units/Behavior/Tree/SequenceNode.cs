@@ -5,15 +5,13 @@ namespace Units.Behavior.Tree {
 
       public SequenceNode(params Node[] children) : base(children) { }
 
-      protected override void OnBegin() {
-         _id = 0;
-      }
+      protected override void OnBegin() => _id = 0;
 
       protected override Status OnRun() {
          Status status;
 
          do {
-            status = Children[_id].Run(); 
+            status = Children[_id].Run();
          } while (status == Status.Succes && ++_id < Children.Count);
 
          return status;

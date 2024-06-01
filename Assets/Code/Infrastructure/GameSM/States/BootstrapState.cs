@@ -1,7 +1,7 @@
 using Infrastructure.Factories.UI;
 using Infrastructure.Loading;
 using Infrastructure.Services.Input;
-using UI.Menus;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +11,7 @@ namespace Infrastructure.GameSM.States {
       private readonly IInputService   _inputService;
       private readonly UIFactory       _uiFactory;
 
-      private MainMenu _mainMenu;
+      private UIMainMenu _uiMainMenu;
 
 
 
@@ -31,19 +31,21 @@ namespace Infrastructure.GameSM.States {
       public override async void Enter() {
          await _loading.Begin();
 
-         await SceneManager.LoadSceneAsync("Main");
+         await SceneManager.LoadSceneAsync(sceneName: "Main");
 
-         _mainMenu = _uiFactory.InsMainMenu();
+         _uiMainMenu = _uiFactory.InsMainMenu();
+         _uiMainMenu.background.Sync(_loading.Background);
 
          await _loading.End();
       }
 
       public override async void Exit() {
          _inputService.Disable();
-
+         
+         _loading.Background.Sync(_uiMainMenu.background);
          await _loading.Begin();
 
-         Object.Destroy(_mainMenu.gameObject);
+         Object.Destroy(_uiMainMenu.gameObject);
       }
    }
 }

@@ -9,15 +9,10 @@ namespace Units.Hero {
       private IInputService _input;
 
 
-      private void Update() {
-         view.LookAt(_input.AimPos);
-      }
+
+      [Inject] public void Construct(IInputService input) => _input = input;
 
 
-
-      [Inject]
-      public void Construct(IInputService input) {
-         _input = input;
-      }
+      private void Update() => view.LookAt(_input.AimPos);
    }
 }

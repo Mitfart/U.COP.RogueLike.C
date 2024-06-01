@@ -63,8 +63,6 @@ namespace Units.Behavior.Nodes {
          return closest;
       }
 
-      private static float Distance(Entity current, Vector2 to) {
-         return (current.Position - to).sqrMagnitude;
-      }
+      private static float Distance(Entity current, Vector2 to) => (current.Position - to).sqrMagnitude;
    }
 }

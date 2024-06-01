@@ -21,9 +21,7 @@ namespace Infrastructure.Services.Input {
          _controls = new Controls();
       }
 
-      public void Dispose() {
-         _controls.Dispose();
-      }
+      public void Dispose() => _controls.Dispose();
 
 
 
@@ -40,9 +38,9 @@ namespace Infrastructure.Services.Input {
 
 
       public void Tick() {
-         MoveDir = Enabled ? _controls.Player.Move.ReadValue<Vector2>() : Vector2.zero;
-         AimPos = Enabled ? _render.Camera.ScreenToWorldPoint(_controls.Player.Aim.ReadValue<Vector2>()) : Vector2.zero;
-         Attack = Enabled && _controls.Player.Shoot.IsInProgress();
+         MoveDir  = Enabled ? _controls.Player.Move.ReadValue<Vector2>() : Vector2.zero;
+         AimPos   = Enabled ? _render.Camera.ScreenToWorldPoint(_controls.Player.Aim.ReadValue<Vector2>()) : Vector2.zero;
+         Attack   = Enabled && _controls.Player.Shoot.IsInProgress();
          Interact = Enabled && _controls.Player.Interact.WasPressedThisFrame();
       }
    }

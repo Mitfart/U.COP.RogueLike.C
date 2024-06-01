@@ -8,7 +8,7 @@ namespace Units.Behavior.Components {
       protected override void Listen(HitData data) {
          if (data.Dealer == Owner)
             return;
-         
+
          target.Set(data.Dealer);
       }
    }

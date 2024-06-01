@@ -9,13 +9,8 @@ namespace Data {
 
 
 
-      private void OnEnable() {
-         receiver.OnReceive += Listen;
-      }
-
-      private void OnDisable() {
-         receiver.OnReceive -= Listen;
-      }
+      private void OnEnable()  => receiver.OnReceive += Listen;
+      private void OnDisable() => receiver.OnReceive -= Listen;
 
       public virtual void SetOwner(Receiver<TData> owner) {
          if (!receiver.IsUnityNull())
@@ -25,8 +20,6 @@ namespace Data {
 
          receiver.OnReceive += Listen;
       }
-
-
 
       protected abstract void Listen(TData data);
    }

@@ -7,15 +7,12 @@ using Object = UnityEngine.Object;
 
 namespace Infrastructure.AssetsManagement {
    public sealed class Assets : IAssets {
-      public T Ins<T>(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null) {
-         return InsAsync(key, at, rot, parent).WaitForCompletion().TryGetComponent(out T component)
+      public T Ins<T>(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null)
+         => InsAsync(key, at, rot, parent).WaitForCompletion().TryGetComponent(out T component)
             ? component
             : throw new NullReferenceException($"Can't find component {nameof(T)}");
-      }
 
-      public GameObject Ins(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null) {
-         return InsAsync(key, at, rot, parent).WaitForCompletion();
-      }
+      public GameObject Ins(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null) => InsAsync(key, at, rot, parent).WaitForCompletion();
 
 
 
@@ -50,10 +47,10 @@ namespace Infrastructure.AssetsManagement {
       public void Unload(object key) {
          // @formatter:off
          switch (key) {
-            case GameObject obj: Addressables.ReleaseInstance(obj); break;
-            case Component comp: Addressables.ReleaseInstance(comp.gameObject); break;
+            case GameObject obj:       Addressables.ReleaseInstance(obj); break;
+            case Component comp:       Addressables.ReleaseInstance(comp.gameObject); break;
             case AssetReference asset: asset.ReleaseAsset(); break;
-            default:             Addressables.Release(key); break;
+            default:                   Addressables.Release(key); break;
          }
          // @formatter:on
       }

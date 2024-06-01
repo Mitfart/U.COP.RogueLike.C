@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Extensions.Transform {
+namespace Extensions {
    public static class Rotate2DExt {
       private static Vector3 ZAxis => Vector3.forward;
 
@@ -40,16 +40,10 @@ namespace Extensions.Transform {
 
 
 
-      private static Quaternion Rotation(this UnityEngine.Transform transform, Vector2 at) {
-         return Quaternion.AngleAxis(AngleOf(transform.RotateDir(at)), ZAxis);
-      }
+      private static Quaternion Rotation(this UnityEngine.Transform transform, Vector2 at) => Quaternion.AngleAxis(AngleOf(transform.RotateDir(at)), ZAxis);
 
-      private static float AngleOf(Vector2 vector) {
-         return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
-      }
+      private static float AngleOf(Vector2 vector) => Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
 
-      private static Vector2 RotateDir(this UnityEngine.Transform transform, Vector2 at) {
-         return at - (Vector2)transform.position;
-      }
+      private static Vector2 RotateDir(this UnityEngine.Transform transform, Vector2 at) => at - (Vector2)transform.position;
    }
 }

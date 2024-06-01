@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Extensions.Transform {
+namespace Extensions {
    public static class ScaleExt {
       public static UnityEngine.Transform Scale(this UnityEngine.Transform transform, float value) {
          transform.localScale = Vector3.one * value;

@@ -11,9 +11,7 @@ namespace Battle.Special {
 
 
 
-      private void Awake() {
-         _explosion = GetComponent<Explosion>();
-      }
+      private void Awake() => _explosion = GetComponent<Explosion>();
 
       private void OnEnable() {
          _explosion.OnBegin += begin.Invoke;

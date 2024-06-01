@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using Infrastructure.Factories.Hero;
 using Infrastructure.GameSM;
 using Infrastructure.GameSM.States;
@@ -10,29 +11,50 @@ namespace Interactions.Level {
    public class Door : MonoBehaviour {
       public Interactable interactable;
       public Transform    jumpPivot;
+      public DoorAnimator doorAnimator;
 
       private GameStateMachine _stateMachine;
       private Location         _location;
       private int              _roomId;
       private HeroFactory      _heroFactory;
 
-      private bool _enteringRoom;
+      private bool            _enteringRoom;
+      private Locations.Level _level;
 
+
+
+      [Inject]
+      public void Construct(GameStateMachine stateMachine, HeroFactory heroFactory, Locations.Level level) {
+         _level        = level;
+         _stateMachine = stateMachine;
+         _heroFactory  = heroFactory;
+
+         Lock();
+
+         _level.OnClear += Unlock;
+      }
+
+      public Door Init(Location location, int roomId) {
+         _location = location;
+         _roomId   = roomId;
+         return this;
+      }
+      
       private void OnEnable()  => interactable.OnInteract += EnterRoom;
       private void OnDisable() => interactable.OnInteract -= EnterRoom;
 
 
 
-      [Inject]
-      public void Construct(GameStateMachine stateMachine, HeroFactory heroFactory) {
-         _heroFactory  = heroFactory;
-         _stateMachine = stateMachine;
+      private void Lock() {
+         interactable.Off();
+         doorAnimator.Lock();
       }
 
-      public Door Init(Location location, int roomId) {
-         _roomId   = roomId;
-         _location = location;
-         return this;
+      private void Unlock() {
+         interactable.On();
+         doorAnimator.Unlock();
+
+         _level.OnClear -= Unlock;
       }
 
 
@@ -44,7 +66,11 @@ namespace Interactions.Level {
          _enteringRoom = true;
 
          await _heroFactory.Hero.animator.ExitRoom(jumpPivot.position);
-         _stateMachine.Enter<LoadLevelState, LoadData>(new LoadData(_location, _roomId));
+
+         if (_roomId < 0 || _roomId >= _level.Location.Rooms.Count)
+            _stateMachine.Enter<EndGameState>();
+         else
+            _stateMachine.Enter<LoadLevelState, LoadData>(new LoadData(_location, _roomId));
       }
    }
 }

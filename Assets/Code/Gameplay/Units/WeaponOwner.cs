@@ -15,12 +15,12 @@ namespace Units {
          get => weapon;
          set {
             if (!weapon.IsUnityNull())
-               hurtReceiver.Remove(weapon.Receiver);
+               hurtReceiver.Remove(weapon.receiver);
 
             weapon = value;
 
             if (!weapon.IsUnityNull())
-               hurtReceiver.Add(weapon.Receiver);
+               hurtReceiver.Add(weapon.receiver);
          }
       }
 
@@ -28,7 +28,7 @@ namespace Units {
 
       private void Awake() {
          if (!weapon.IsUnityNull())
-            hurtReceiver.Add(weapon.Receiver);
+            hurtReceiver.Add(weapon.receiver);
       }
 
       private void OnEnable() {
@@ -43,14 +43,10 @@ namespace Units {
 
 
 
-      public async Task Attack() {
-         await weapon.Attack();
-      }
+      public async Task Attack() => await weapon.Attack();
 
 
 
-      public void Aim(Vector2 at) {
-         weapon.transform.Rotate2D(at);
-      }
+      public void Aim(Vector2 at) => weapon.transform.Rotate2D(at);
    }
 }

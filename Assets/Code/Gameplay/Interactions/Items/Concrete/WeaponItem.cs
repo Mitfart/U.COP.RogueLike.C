@@ -1,7 +1,6 @@
 using Battle.Weapons;
 using Infrastructure.AssetsManagement.Refs;
 using Unity.VisualScripting;
-using UnityEngine;
 
 namespace Interactions.Items.Concrete {
    public class WeaponItem : Item {

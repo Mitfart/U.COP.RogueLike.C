@@ -5,10 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour {
-   [field: SerializeField] public string Name { get; private set; }
-   [field: SerializeField] public Team   Team { get; private set; }
-
    [field: SerializeField, SpaceAfter] private Transform body;
+   [field: SerializeField]             public  string    Name { get; private set; }
+   [field: SerializeField]             public  Team      Team { get; private set; }
 
    [field: SerializeField] public Optional<Health>          Health          { get; private set; }
    [field: SerializeField] public Optional<Invulnerability> Invulnerability { get; private set; }

@@ -9,18 +9,15 @@ namespace Units.Hero {
 
       private IInputService _input;
 
-      
+
+
+      [Inject] public void Construct(IInputService input) => _input = input;
+
+
 
       private void Update() {
          if (_input.Interact)
             heroInteractor.Interact();
-      }
-
-
-
-      [Inject]
-      public void Construct(IInputService input) {
-         _input = input;
       }
    }
 }

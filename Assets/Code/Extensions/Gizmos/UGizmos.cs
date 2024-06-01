@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Extensions.Gizmos {
+namespace Extensions {
    public static class UGizmos {
       public const float FILL_OPACITY_SCALE   = .1f;
       public const float BORDER_OPACITY_SCALE = 1f;
@@ -14,15 +14,14 @@ namespace Extensions.Gizmos {
          Matrix4x4? matrix        = null,
          float      fillOpacity   = FILL_OPACITY_SCALE,
          float      borderOpacity = BORDER_OPACITY_SCALE
-      ) {
-         DrawFilled(
+      )
+         => DrawFilled(
             matrix ?? Matrix4x4.identity,
             fillOpacity,
             borderOpacity,
             () => UnityEngine.Gizmos.DrawCube(origin, size),
             () => UnityEngine.Gizmos.DrawWireCube(origin, size)
          );
-      }
 
 
 
@@ -32,15 +31,14 @@ namespace Extensions.Gizmos {
          Matrix4x4? matrix        = null,
          float      fillOpacity   = FILL_OPACITY_SCALE,
          float      borderOpacity = BORDER_OPACITY_SCALE
-      ) {
-         DrawFilled(
+      )
+         => DrawFilled(
             matrix ?? Matrix4x4.identity,
             fillOpacity,
             borderOpacity,
             () => UnityEngine.Gizmos.DrawSphere(origin, radius),
             () => UnityEngine.Gizmos.DrawWireSphere(origin, radius)
          );
-      }
 
 
 

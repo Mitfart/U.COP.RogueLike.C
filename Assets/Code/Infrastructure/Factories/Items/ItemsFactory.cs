@@ -1,33 +1,41 @@
 using System.Collections.Generic;
+using Extensions;
 using Infrastructure.AssetsManagement;
 using Interactions.Items;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace Infrastructure.Factories.Items {
    public class ItemsFactory : Factory {
-      private const string _CONTAINER_NAME = "Items";
+      private const string _TAG           = "DROPPED";
+      private const string _DROPPED_ITEM  = "DROPPED_ITEM";
+      private const string _DROPPED_HEART = "DROPPED_HEART";
 
-      public readonly List<DroppedItem> itemsOnGround = new();
+      public readonly List<DroppedItem>  DroppedItems  = new();
+      public readonly List<DroppedHeart> DroppedHearts = new();
 
 
 
       public ItemsFactory(IAssets assets, IObjectResolver di) : base(assets, di) { }
 
-      public DroppedItem DropItem(Item item, Vector3 pos) {
-         DroppedItem ins = assets.Ins<DroppedItem>( //
-            "DROPPED_ITEM",
-            pos,
-            parent: Container(_CONTAINER_NAME)
-         );
-         di.InjectGameObject(ins.gameObject);
+      public override void Reset() {
+         base.Reset();
+         DroppedItems.CleanUp();
+         DroppedHearts.CleanUp();
+      }
 
+
+
+      public DroppedItem DropItem(Item item, Vector3 at) {
+         DroppedItem ins = Spawn<DroppedItem>(_DROPPED_ITEM, Container(_TAG), at);
+         DroppedItems.Add(ins);
          ins.item = item;
+         return ins;
+      }
 
-         itemsOnGround.Add(ins);
-         ins.interactable.OnInteract += _ => itemsOnGround.Remove(ins);
-
+      public DroppedHeart DropHeart(Vector3 at) {
+         DroppedHeart ins = Spawn<DroppedHeart>(_DROPPED_HEART, Container(_TAG), at);
+         DroppedHearts.Add(ins);
          return ins;
       }
    }

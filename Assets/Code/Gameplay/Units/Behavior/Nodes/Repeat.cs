@@ -17,17 +17,13 @@ namespace Units.Behavior.Nodes {
       }
 
 
-      protected override void OnBegin() {
-         _passedAmount = 0;
-      }
+      protected override void OnBegin() => _passedAmount = 0;
 
       protected override Status OnRun() {
          base.OnRun();
          return EndRepeating() ? Status.Succes : Status.Run;
       }
 
-      private bool EndRepeating() {
-         return _notInfinite && _passedAmount++ >= _amount;
-      }
+      private bool EndRepeating() => _notInfinite && _passedAmount++ >= _amount;
    }
 }

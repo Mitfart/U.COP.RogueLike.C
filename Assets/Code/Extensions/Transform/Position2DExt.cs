@@ -1,9 +1,7 @@
 using UnityEngine;
 
-namespace Extensions.Transform {
+namespace Extensions {
    public static class Position2DExt {
-      public static Vector2 Position2D(this UnityEngine.Transform transform) {
-         return transform.position;
-      }
+      public static Vector2 Position2D(this UnityEngine.Transform transform) => transform.position;
    }
 }

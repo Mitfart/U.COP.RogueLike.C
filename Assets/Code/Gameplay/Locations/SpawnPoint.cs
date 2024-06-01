@@ -8,8 +8,20 @@ namespace Locations {
       [SerializeField] private string                       debugName = "SP";
       [SerializeField] private AssetComponentRef<Transform> enemy;
 
+      public string DebugName {
+         get {
+#if UNITY_EDITOR
+            return enemy.editorAsset.name;
+#else
+            return string.Empty;
+#endif
+         }
+      }
+
       public AssetComponentRef<Transform> Enemy    => enemy;
       public Vector2                      Position => transform.position;
+
+
 
       private void OnDrawGizmos() {
          if (Application.isPlaying)

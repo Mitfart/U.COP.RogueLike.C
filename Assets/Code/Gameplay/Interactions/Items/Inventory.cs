@@ -7,10 +7,15 @@ namespace Interactions.Items {
 
       [SerializeField] private List<Item> items = new();
 
+
+
       private void Awake() {
-         foreach (Item item in items)
+         foreach (Item item in items) {
             item.Apply(owner);
+         }
       }
+
+
 
       public void Pick(Item item) {
          items.Add(item);

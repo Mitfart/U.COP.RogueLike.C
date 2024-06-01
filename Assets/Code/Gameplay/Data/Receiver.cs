@@ -25,9 +25,7 @@ namespace Data {
          InitSenders();
       }
 
-      protected void OnValidate() {
-         senders = Enumerable.ToHashSet(senders).ToList();
-      }
+      protected void OnValidate() => senders = Enumerable.ToHashSet(senders).ToList();
 
 
 
@@ -38,7 +36,7 @@ namespace Data {
 
       public void Remove(TSender sender) {
          senders.Remove(sender);
-         sender.SetOwner(null);
+         sender.SetOwner(owner: null);
       }
 
 
@@ -46,25 +44,39 @@ namespace Data {
          if (subReceiver == this)
             throw new Exception("Cant Add self!");
 
+         if (subReceiver.IsUnityNull())
+            throw new Exception($"Receiver is null! : {subReceiver}");
+
          subReceivers.Add(subReceiver);
          subReceiver.OnReceive += Receive;
          subReceiver.Parent    =  (TReceiver)this;
+         subReceiver.owner     =  owner;
+
+         OnAddSubReceiver(subReceiver);
       }
 
       public void Remove(TReceiver subReceiver) {
          if (subReceiver == this)
-            throw new Exception("Cant Remove self!");
+            throw new Exception(message: "Cant Remove self!");
 
          subReceivers.Remove(subReceiver);
          subReceiver.OnReceive -= Receive;
          subReceiver.Parent    =  null;
+         subReceiver.owner     =  null;
+
+         OnRemoveSubReceiver(subReceiver);
       }
+
+
+      protected virtual void OnAddSubReceiver(TReceiver    subReceiver) { }
+      protected virtual void OnRemoveSubReceiver(TReceiver subReceiver) { }
 
 
 
       private void InitSenders() {
-         foreach (TSender sender in Senders)
+         foreach (TSender sender in Senders) {
             sender.SetOwner((TReceiver)this);
+         }
       }
 
       private void InitSubReceivers() {
@@ -85,8 +97,6 @@ namespace Data {
 
 
 
-      public virtual void Receive(TData data) {
-         OnReceive?.Invoke(data);
-      }
+      public virtual void Receive(TData data) => OnReceive?.Invoke(data);
    }
 }

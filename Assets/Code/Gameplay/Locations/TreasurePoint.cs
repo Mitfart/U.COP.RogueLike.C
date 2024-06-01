@@ -1,5 +1,4 @@
 using Interactions.Loot;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Locations {
@@ -7,12 +6,14 @@ namespace Locations {
       [field: SerializeField] public TreasureSize TreasureSize { get; private set; }
 
       public Vector2 Position => transform.position;
-
+      
+      
+      
       private void OnDrawGizmos() {
          if (Application.isPlaying)
             return;
 
-         name = $"[ Treasure ]__{TreasureSize.DisplayName()}";
+         name = $"[ Treasure ]__{TreasureSize}";
       }
    }
 }

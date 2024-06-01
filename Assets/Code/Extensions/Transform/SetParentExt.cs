@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Extensions.Transform {
+namespace Extensions {
    public static class SetParentExt {
       public static GameObject SetParent(this GameObject obj, UnityEngine.Transform parent) {
          obj.transform.SetParent(parent);

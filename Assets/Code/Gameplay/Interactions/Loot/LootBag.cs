@@ -7,6 +7,6 @@ namespace Interactions.Loot {
    public class LootBag : ScriptableObject {
       [SerializeField] private List<Item> items;
 
-      public Item GetRandom() => items[Random.Range(0, items.Count)];
+      public Item GetRandom() => items[Random.Range(minInclusive: 0, items.Count)];
    }
 }

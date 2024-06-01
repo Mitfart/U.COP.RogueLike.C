@@ -10,13 +10,12 @@ namespace Battle.Weapons.Attacks {
 
 
 
-      private void Awake() {
-         _attackTasks = new Task[attacks.Count];
-      }
+      private void Awake() => _attackTasks = new Task[attacks.Count];
 
       public override Task Perform(Weapon weapon) {
-         for (var i = 0; i < attacks.Count; i++)
+         for (var i = 0; i < attacks.Count; i++) {
             _attackTasks[i] = attacks[i].Perform(weapon);
+         }
 
          return Task.WhenAll(_attackTasks);
       }

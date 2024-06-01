@@ -8,7 +8,7 @@ namespace Interactions.Items.Concrete {
 
       public override void Apply(Entity entity) {
          if (!entity.WeaponOwner.enabled
-          || entity.WeaponOwner.value.Weapon.AttackMethod is not RangeWeaponAttack rangeAttack)
+          || entity.WeaponOwner.value.Weapon.attackMethod is not RangeWeaponAttack rangeAttack)
             return;
 
          rangeAttack.spawner.BulletsCount += amount;
@@ -16,7 +16,7 @@ namespace Interactions.Items.Concrete {
 
       public override void Revoke(Entity entity) {
          if (!entity.WeaponOwner.enabled
-          || entity.WeaponOwner.value.Weapon.AttackMethod is not RangeWeaponAttack rangeAttack)
+          || entity.WeaponOwner.value.Weapon.attackMethod is not RangeWeaponAttack rangeAttack)
             return;
 
          rangeAttack.spawner.BulletsCount -= amount;

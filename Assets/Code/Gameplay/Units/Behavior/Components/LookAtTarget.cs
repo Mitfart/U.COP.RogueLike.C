@@ -5,8 +5,6 @@ namespace Units.Behavior.Components {
       public View     view;
       public AITarget aiTarget;
 
-      private void Update() {
-         view.LookAt(aiTarget.Position);
-      }
+      private void Update() => view.LookAt(aiTarget.Position);
    }
 }

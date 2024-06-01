@@ -8,19 +8,8 @@ namespace Infrastructure.AssetsManagement {
       GameObject Ins(object    key, Vector3 at = default, Quaternion? rot = null, Transform parent = null);
 
 
-      public Task<T> InsAsync<T>(
-         object      key, //
-         Vector3     at     = default,
-         Quaternion? rot    = null,
-         Transform   parent = null
-      );
-
-      AsyncOperationHandle<GameObject> InsAsync(
-         object      key, //
-         Vector3     at     = default,
-         Quaternion? rot    = null,
-         Transform   parent = null
-      );
+      Task<T>                          InsAsync<T>(object key, Vector3 at = default, Quaternion? rot = null, Transform parent = null);
+      AsyncOperationHandle<GameObject> InsAsync(object    key, Vector3 at = default, Quaternion? rot = null, Transform parent = null);
 
       AsyncOperationHandle<T> Load<T>(object key) where T : Object;
       void                    Unload(object  key);

@@ -14,8 +14,8 @@ namespace Units.Behavior.Tree {
 
       protected override Status OnRun() => Condition() ? True() : False();
 
-      private Status True()  => _true?.Run()  ?? throw new Exception("Not set required node @true");
-      private Status False() => _false?.Run() ?? throw new Exception("Not set required node @false");
+      private Status True()  => _true?.Run()  ?? throw new Exception(message: "Not set required node @true");
+      private Status False() => _false?.Run() ?? throw new Exception(message: "Not set required node @false");
 
       internal abstract bool Condition();
    }

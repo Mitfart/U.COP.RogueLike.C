@@ -1,4 +1,4 @@
-using Extensions.Gizmos;
+using Extensions;
 using Movements;
 using Units.Behavior.Components;
 using Units.Behavior.Nodes;
@@ -21,6 +21,24 @@ namespace Units.Behavior.Concrete {
       public SelfExplosion selfExplosion;
 
       private float _defaultSpeed;
+
+
+
+      private void OnDrawGizmos() {
+         Vector3 selfPos = Self.Position;
+
+         Gizmos.color = Color.red;
+         UGizmos.DrawFilledSphere(explodeDistance, selfPos);
+
+         Gizmos.color = Color.blue;
+         UGizmos.DrawFilledSphere(_defaultSpeed, selfPos);
+
+         if (!Application.isPlaying)
+            return;
+
+         Gizmos.color = Color.yellow;
+         Gizmos.DrawLine(selfPos, target.Position);
+      }
 
 
 
@@ -50,24 +68,6 @@ namespace Units.Behavior.Concrete {
                )
             )
          };
-      }
-
-
-
-      private void OnDrawGizmos() {
-         Vector3 selfPos = Self.Position;
-
-         Gizmos.color = Color.red;
-         UGizmos.DrawFilledSphere(explodeDistance, selfPos);
-
-         Gizmos.color = Color.blue;
-         UGizmos.DrawFilledSphere(_defaultSpeed, selfPos);
-
-         if (!Application.isPlaying)
-            return;
-
-         Gizmos.color = Color.yellow;
-         Gizmos.DrawLine(selfPos, target.Position);
       }
 
       private Node MoveRandomly() => new MoveRandomly(target, waitTime, _defaultSpeed, movement);

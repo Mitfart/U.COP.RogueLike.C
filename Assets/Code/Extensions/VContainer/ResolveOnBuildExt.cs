@@ -1,9 +1,7 @@
 ﻿using VContainer;
 
-namespace Extensions.VContainer {
+namespace Extensions {
    public static class ResolveOnBuildExt {
-      public static void ResolveOnBuild<T>(this IContainerBuilder di) {
-         di.RegisterBuildCallback(resolver => resolver.Resolve<T>());
-      }
+      public static void ResolveOnBuild<T>(this IContainerBuilder di) => di.RegisterBuildCallback(resolver => resolver.Resolve<T>());
    }
 }

@@ -1,6 +1,4 @@
-using Infrastructure.Factories.Hero;
 using UnityEngine;
-using VContainer;
 
 namespace Interactions.Items {
    public class DroppedItem : MonoBehaviour {
@@ -12,24 +10,17 @@ namespace Interactions.Items {
 
       private void Start() => UpdateView();
 
-      private void OnEnable()  => interactable.OnInteract += PickItem;
-      private void OnDisable() => interactable.OnInteract -= PickItem;
+      private void OnEnable()   => interactable.OnInteract += PickItem;
+      private void OnDisable()  => interactable.OnInteract -= PickItem;
+      private void OnValidate() => UpdateView();
 
 
 
-      private void PickItem(HeroInteractor interactor) {
-         item.PickItem(interactor.hero.inventory);
+      protected virtual void PickItem(HeroInteractor interactor) {
+         interactor.hero.inventory.Pick(item);
          Destroy(gameObject);
       }
 
-      private void UpdateView() {
-         render.sprite = item.sprite;
-      }
-
-
-
-      private void OnValidate() {
-         UpdateView();
-      }
+      private void UpdateView() => render.sprite = item.sprite;
    }
 }

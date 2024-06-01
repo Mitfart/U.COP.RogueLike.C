@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Extensions.VContainer;
+using Extensions;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factories;
+using Infrastructure.Factories.Bullets;
 using Infrastructure.Factories.Enemy;
 using Infrastructure.Factories.Hero;
 using Infrastructure.Factories.Items;
@@ -20,9 +21,10 @@ using VContainer.Unity;
 
 namespace Infrastructure.Scopes {
    public class GameScope : LifetimeScope {
-      public  LocationsSet      defaultLocationsSet;
-      public  Render.Render     render;
-      public  LoadingCurtain    loadingCurtain;
+      public Render.Render  render;
+      public LoadingCurtain loadingCurtain;
+      public LocationsSet   defaultLocationsSet;
+
       private IContainerBuilder _di;
 
 
@@ -35,32 +37,21 @@ namespace Infrastructure.Scopes {
          RegInputService();
          RegAssets();
 
+         RegSharedObjects();
+
          RegFactories();
          RegLocations();
          RegLevel();
-
-         RegSharedObjects();
 
          RegGameStateMachine();
          RegStates();
       }
 
 
-      private void RegTimeService() {
-         _di.Register<ITimeService, TimeService>(Lifetime.Singleton);
-      }
-
-      private void RegRandomService() {
-         _di.Register<IRandomService, RandomService>(Lifetime.Singleton);
-      }
-
-      private void RegInputService() {
-         _di.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces();
-      }
-
-      private void RegAssets() {
-         _di.Register<IAssets, Assets>(Lifetime.Singleton);
-      }
+      private void RegTimeService()   => _di.Register<ITimeService, TimeService>(Lifetime.Singleton);
+      private void RegRandomService() => _di.Register<IRandomService, RandomService>(Lifetime.Singleton);
+      private void RegInputService()  => _di.Register<InputService>(Lifetime.Singleton).AsImplementedInterfaces();
+      private void RegAssets()        => _di.Register<IAssets, Assets>(Lifetime.Singleton);
 
       private void RegSharedObjects() {
          Reg(render);
@@ -68,19 +59,16 @@ namespace Infrastructure.Scopes {
          return;
 
          void Reg<T>(T prefab) where T : Component {
-            _di.RegisterComponentInNewPrefab(prefab, Lifetime.Singleton).DontDestroyOnLoad().AsImplementedInterfaces();
+            _di.RegisterComponentInNewPrefab(prefab, Lifetime.Singleton)
+               .DontDestroyOnLoad()
+               .AsSelf()
+               .AsImplementedInterfaces();
          }
       }
 
+      private void RegLocations() => _di.RegScriptable(defaultLocationsSet);
+      private void RegLevel()     => _di.Register<Level>(Lifetime.Singleton);
 
-
-      private void RegLocations() {
-         _di.RegScriptable(defaultLocationsSet);
-      }
-
-      private void RegLevel() {
-         _di.Register<Level>(Lifetime.Singleton);
-      }
 
       private void RegFactories() {
          Reg<UIFactory>();
@@ -88,6 +76,7 @@ namespace Infrastructure.Scopes {
          Reg<EnemiesFactory>();
          Reg<HeroFactory>();
          Reg<ItemsFactory>();
+         Reg<BulletsFactory>();
          return;
 
 
@@ -112,6 +101,7 @@ namespace Infrastructure.Scopes {
          Reg<StartGameState>();
          Reg<LoadLevelState>();
          Reg<GameplayState>();
+         Reg<EndGameState>();
          return;
 
 

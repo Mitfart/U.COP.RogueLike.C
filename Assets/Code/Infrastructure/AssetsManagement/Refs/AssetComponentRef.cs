@@ -9,16 +9,19 @@ namespace Infrastructure.AssetsManagement.Refs {
    public class AssetComponentRef<T> : AssetRef<GameObject> where T : Component {
       private    T _cashedAsset;
       public new T Asset => _cashedAsset ??= base.Asset.GetComponent<T>();
+      
+#if UNITY_EDITOR
+      public  T EditorAsset => _cashedEditorAsset ??= !editorAsset.IsUnityNull() ? editorAsset.GetComponent<T>() : null;
+      private T _cashedEditorAsset;
+#endif
 
 
-
+      
       public AssetComponentRef(string guid) : base(guid) { }
 
 
 
-      public override bool ValidateAsset(Object obj) {
-         return obj is GameObject go && go.TryGetComponent(out T _);
-      }
+      public override bool ValidateAsset(Object obj) => obj is GameObject go && go.TryGetComponent(out T _);
 
       public override bool ValidateAsset(string mainAssetPath) {
 #if UNITY_EDITOR
@@ -27,10 +30,5 @@ namespace Infrastructure.AssetsManagement.Refs {
          return false;
 #endif
       }
-
-#if UNITY_EDITOR
-      public  T EditorAsset => _cashedEditorAsset ??= !editorAsset.IsUnityNull() ? editorAsset.GetComponent<T>() : null;
-      private T _cashedEditorAsset;
-#endif
    }
 }

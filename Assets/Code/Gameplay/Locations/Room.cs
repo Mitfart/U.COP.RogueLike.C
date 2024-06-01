@@ -18,8 +18,6 @@ namespace Locations {
       public IEnumerable<ISpawnPoint>    SpawnPoints    => spawnPoints;
       public IEnumerable<ITreasurePoint> TreasurePoints => treasurePoints;
 
-
-
       public void DestroySelf() => Destroy(gameObject);
 
 
@@ -29,16 +27,22 @@ namespace Locations {
          Gizmos.DrawSphere(EnterPoint, _RADIUS);
 
          Gizmos.color = Color.yellow;
-         foreach (Vector3 exitPoint in ExitPoints)
+
+         foreach (Vector3 exitPoint in ExitPoints) {
             Gizmos.DrawSphere(exitPoint, _RADIUS);
+         }
 
          Gizmos.color = Color.red;
-         foreach (ISpawnPoint spawnPoint in SpawnPoints)
+
+         foreach (ISpawnPoint spawnPoint in SpawnPoints) {
             Gizmos.DrawSphere(spawnPoint.Position, _RADIUS);
+         }
 
          Gizmos.color = Color.magenta;
-         foreach (ITreasurePoint treasurePoint in TreasurePoints)
+
+         foreach (ITreasurePoint treasurePoint in TreasurePoints) {
             Gizmos.DrawSphere(treasurePoint.Position, _RADIUS);
+         }
       }
 
       private void OnValidate() {

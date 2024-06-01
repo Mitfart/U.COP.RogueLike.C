@@ -5,8 +5,7 @@ using UnityEngine;
 using VContainer;
 
 namespace Infrastructure {
-   [RequireComponent(typeof(GameScope))]
-   [DefaultExecutionOrder(-10)]
+   [RequireComponent(typeof(GameScope)), DefaultExecutionOrder(order: -5)]
    public class Bootstrap : MonoBehaviour {
       public GameScope scope;
 
@@ -15,23 +14,18 @@ namespace Infrastructure {
       public void Awake() {
          DontDestroyOnLoad(gameObject);
 
-         scope.Build();
          scope.autoRun = false;
+         scope.Build();
 
          EnterBootState();
       }
 
-      private GameStateMachine GameStateMachine() {
-         return scope.Container.Resolve<GameStateMachine>();
-      }
-
-      private void EnterBootState() {
-         GameStateMachine().Enter<BootstrapState>();
-      }
+      private void OnDrawGizmos() => scope ??= GetComponent<GameScope>();
 
 
-      private void OnDrawGizmos() {
-         scope ??= GetComponent<GameScope>();
-      }
+
+      private void EnterBootState() => GameStateMachine().Enter<BootstrapState>();
+
+      private GameStateMachine GameStateMachine() => scope.Container.Resolve<GameStateMachine>();
    }
 }

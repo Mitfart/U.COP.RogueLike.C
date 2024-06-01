@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Extensions.AsyncOperation {
+namespace Extensions {
    public static class ToTaskExt {
       public static async Task<TOperation> ToTask<TOperation>(this TOperation asyncOperation)
          where TOperation : UnityEngine.AsyncOperation {

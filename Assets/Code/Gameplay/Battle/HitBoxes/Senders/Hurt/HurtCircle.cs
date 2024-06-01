@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Extensions.Gizmos;
+using Extensions;
 using UnityEngine;
 
 namespace Battle.HitBoxes.Senders.Hurt {
@@ -21,8 +21,6 @@ namespace Battle.HitBoxes.Senders.Hurt {
          );
       }
 
-      protected override void DrawGizmos() {
-         UGizmos.DrawFilledSphere(radius, matrix: transform.localToWorldMatrix);
-      }
+      protected override void DrawGizmos() => UGizmos.DrawFilledSphere(radius, matrix: transform.localToWorldMatrix);
    }
 }

@@ -50,6 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e941a11397f44dfd9d9e11ba121af904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartsCount:
+    min: 0
+    max: 3
+    minEdge: 0
+    maxEdge: 99
+    rounded: 1
   lootBag: {fileID: 11400000, guid: 8cfdecf5a2f156e498451694cf217443, type: 2}
   interactable: {fileID: 2571446858116497262}
   animator: {fileID: 2478012618207721886}
@@ -117,9 +123,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 50
-  m_AngularDrag: 50
+  m_Mass: 100
+  m_LinearDrag: 5
+  m_AngularDrag: 0.5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -223,3 +229,4 @@ MonoBehaviour:
   interactable: {fileID: 2571446858116497262}
   body: {fileID: 6326705264716724705}
   scale: {x: 1, y: 1.1}
+  duration: 0.125

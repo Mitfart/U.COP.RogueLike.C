@@ -1,7 +1,6 @@
 using System;
-using Battle.HitBoxes.Receiver;
 using Battle.HitBoxes.Receiver.Hit;
-using Extensions.Gizmos;
+using Extensions;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -43,8 +42,8 @@ namespace Battle.HitBoxes.Senders.Hit {
 
                size -= (Vector2)radiusOffsetDir * 2f * radius;
                size = new Vector2( //
-                  Mathf.Max(0, size.x),
-                  Mathf.Max(0, size.y)
+                  Mathf.Max(a: 0, size.x),
+                  Mathf.Max(a: 0, size.y)
                );
 
                float radiusOffsetLength = direction switch {
