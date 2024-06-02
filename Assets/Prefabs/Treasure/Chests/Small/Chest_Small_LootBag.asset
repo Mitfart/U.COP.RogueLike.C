@@ -13,5 +13,18 @@ MonoBehaviour:
   m_Name: Chest_Small_LootBag
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: fc40f8695501bc64aaabbb56132dbe44, type: 2}
+  - {fileID: 11400000, guid: 726ccf64b1ebe3242a8d0598fc383ffa, type: 2}
+  - {fileID: 11400000, guid: 86a2231e9dcde6041b9c98aae31b3de5, type: 2}
+  - {fileID: 11400000, guid: 4c6b5a2e2b0b35f449b5817b9ff7771a, type: 2}
+  - {fileID: 11400000, guid: d95a9b56f68f4b84089c8593852c9536, type: 2}
+  - {fileID: 11400000, guid: d8b3b443c02320c4585814af436e4408, type: 2}
+  - {fileID: 11400000, guid: fe1d8d98af1fdda49b7acfb06aa13207, type: 2}
+  - {fileID: 11400000, guid: 1cbd61638860df241a92c2bf501cb920, type: 2}
+  - {fileID: 11400000, guid: 1913233c51c5c9a4bb7548daf5e0a99b, type: 2}
+  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
+  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
+  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
+  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
+  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
+  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
   - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}

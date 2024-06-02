@@ -44,7 +44,7 @@ namespace Battle.Weapons {
          }
       }
 
-      [Button(Mode = ButtonMode.EnabledInPlayMode)] public void Block() => _blocked = true;
+      [Button(Mode = ButtonMode.EnabledInPlayMode)] public void Block()   => _blocked = true;
       [Button(Mode = ButtonMode.EnabledInPlayMode)] public void Unblock() => _blocked = false;
    }
 }

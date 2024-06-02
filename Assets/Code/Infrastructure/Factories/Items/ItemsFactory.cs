@@ -27,6 +27,7 @@ namespace Infrastructure.Factories.Items {
 
 
       public DroppedItem DropItem(Item item, Vector3 at) {
+         Di.Inject(item);
          DroppedItem ins = Spawn<DroppedItem>(_DROPPED_ITEM, Container(_TAG), at);
          DroppedItems.Add(ins);
          ins.item = item;

@@ -13,5 +13,10 @@ namespace Structs.Optional {
       }
 
       public T ValueOrDefault(T def = default) => enabled ? value : def;
+
+      public void Try(Action<T> action) {
+         if (enabled)
+            action?.Invoke(value);
+      }
    }
 }

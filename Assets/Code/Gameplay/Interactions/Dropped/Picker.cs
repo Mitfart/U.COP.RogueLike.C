@@ -7,7 +7,7 @@ namespace Interactions.Items {
       public                         LayerMask layerMask;
       public                         float     pickRadius = 1f;
 
-      public float speed      = 1f;
+      [Min(0f)] public float duration = 1f;
 
 
 
@@ -16,7 +16,7 @@ namespace Interactions.Items {
             if (item.TryGetComponent(out Dropped dropped)
              && dropped.enabled
              && dropped.Compatible(Owner))
-               dropped.Pick(Owner, speed);
+               dropped.Pick(Owner, duration);
       }
 
 

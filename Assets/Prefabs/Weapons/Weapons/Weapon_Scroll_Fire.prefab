@@ -229,7 +229,7 @@ MonoBehaviour:
   damageMultiplier:
     value: 1
     enabled: 0
-  reloadDuration: 0.1
+  reloadDuration: 0.5
 --- !u!114 &6333627356550904161
 MonoBehaviour:
   m_ObjectHideFlags: 0

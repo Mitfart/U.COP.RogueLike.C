@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 4382608902437965986}
   - component: {fileID: 149102573951607927}
   - component: {fileID: 2393160512472900178}
+  - component: {fileID: 213105548438094797}
   - component: {fileID: 111291532372312428}
   m_Layer: 0
   m_Name: Hero
@@ -302,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 8825722371886942288}
   hurtReceiver: {fileID: 8463716202703832246}
-  weapon: {fileID: 2410396343028544213}
+  weapon: {fileID: 0}
 --- !u!114 &8463716202703832246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +377,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   receiver: {fileID: 8990191891993444282}
   health: {fileID: 4382608902437965986}
+--- !u!114 &213105548438094797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023067231561335154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a915bea83dd431b897f900b7670c629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 8825722371886942288}
+  health: {fileID: 4382608902437965986}
 --- !u!95 &111291532372312428
 Animator:
   serializedVersion: 7
@@ -434,7 +449,6 @@ Transform:
   m_Children:
   - {fileID: 1375336308230020638}
   - {fileID: 1631137131295844518}
-  - {fileID: 42016842254915447}
   m_Father: {fileID: 8209329192597407452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &183881370190887367
@@ -631,94 +645,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2512eb6893424f599abfdcd99cd2acf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &4345664439026486860
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6008700422794405003}
-    m_Modifications:
-    - target: {fileID: 265352252171149997, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: spreadAngle
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107003462907952281, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: baseDamage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2107003462907952281, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: <ReloadDuration>k__BackingField
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6266587592508234585, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: m_Name
-      value: Weapon_Scroll_Energy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6333627356550904161, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
---- !u!4 &42016842254915447 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4385275477859277115, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-  m_PrefabInstance: {fileID: 4345664439026486860}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2410396343028544213 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2107003462907952281, guid: 1bfb334afa4cd164cae50f7858308f62, type: 3}
-  m_PrefabInstance: {fileID: 4345664439026486860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72a617adb65740ad8106a84c8ea0887d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

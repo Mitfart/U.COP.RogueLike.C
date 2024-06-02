@@ -1,36 +1,27 @@
 using Battle.Weapons;
 using Infrastructure.AssetsManagement.Refs;
-using Unity.VisualScripting;
+using Infrastructure.Factories.Items;
+using UnityEngine;
+using VContainer;
 
 namespace Interactions.Items.Concrete {
+   [CreateAssetMenu(menuName = "item/new WeaponItem")]
    public class WeaponItem : Item {
       public AssetComponentRef<Weapon> weapon;
 
-      private Weapon _weaponIns;
+      private WeaponFactory _weaponFactory;
 
 
+
+      [Inject]
+      public void Construct(WeaponFactory weaponFactory) {
+         _weaponFactory = weaponFactory;
+      }
 
       public override void Apply(Entity entity) {
-         if (!entity.WeaponOwner.enabled)
-            return;
-
-         if (!entity.WeaponOwner.value.Weapon.IsUnityNull())
-            Destroy(entity.WeaponOwner.value.Weapon.gameObject);
-
-         if (_weaponIns.IsUnityNull())
-            _weaponIns = weapon.InstantiateAsync()
-                               .WaitForCompletion()
-                               .GetComponent<Weapon>();
-
-         entity.WeaponOwner.value.Weapon = _weaponIns;
+         entity.WeaponOwner.Try(wo => wo.Weapon = _weaponFactory.Ins(weapon));
       }
 
-      public override void Revoke(Entity entity) {
-         if (!entity.WeaponOwner.enabled)
-            return;
-
-         if (!_weaponIns.IsUnityNull())
-            Destroy(_weaponIns.gameObject);
-      }
+      public override void Revoke(Entity entity) { }
    }
 }

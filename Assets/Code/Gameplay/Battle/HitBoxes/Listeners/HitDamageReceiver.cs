@@ -14,8 +14,7 @@ namespace Battle.HitBoxes.Listeners {
 
          health.Damage(data.Damage);
 
-         if (Owner.Invulnerability.enabled)
-            Owner.Invulnerability.value.On();
+         Owner.Invulnerability.Try(i => i.On());
       }
    }
 }

@@ -1,4 +1,6 @@
 using Battle.Weapons;
+using Units;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,27 +10,50 @@ namespace UI {
       public Image maskImage;
       public Image maskEffect;
 
-      private Weapon _weapon;
+      private WeaponOwner _weaponOwner;
 
-      public Weapon Weapon {
-         get => _weapon;
+      public WeaponOwner WeaponOwner {
+         get => _weaponOwner;
          set {
-            if (_weapon) {
-               _weapon.Reloading.OnProcess -= Redraw;
+            if (_weaponOwner) {
+               if (_weaponOwner.Weapon)
+                  _weaponOwner.Weapon.Reloading.OnProcess -= Redraw;
+
+               _weaponOwner.OnChangeWeapon -= Redraw;
             }
 
-            _weapon = value;
+            _weaponOwner = value;
 
-            if (_weapon) {
-               _weapon.Reloading.OnProcess += Redraw;
-               Redraw(completion: 1f);
+            if (_weaponOwner) {
+               if (_weaponOwner.Weapon)
+                  _weaponOwner.Weapon.Reloading.OnProcess += Redraw;
+
+               _weaponOwner.OnChangeWeapon += Redraw;
             }
+
+            Redraw(completion: 1f);
          }
       }
 
       private void Redraw(float completion) {
-         weaponImage.sprite    = maskImage.sprite = _weapon.sprite;
+         if (_weaponOwner.IsUnityNull() || _weaponOwner.Weapon.IsUnityNull()) {
+            gameObject.SetActive(false);
+            return;
+         }
+
+         weaponImage.sprite    = maskImage.sprite = _weaponOwner.Weapon.sprite;
          maskEffect.fillAmount = 1f - completion;
+         gameObject.SetActive(true);
+      }
+
+      private void Redraw(Weapon weapon) {
+         if (_weaponOwner.Weapon.IsUnityNull())
+            return;
+
+         _weaponOwner.Weapon.Reloading.OnProcess -= Redraw;
+         _weaponOwner.Weapon.Reloading.OnProcess += Redraw;
+
+         Redraw(completion: 1f);
       }
    }
 }

@@ -1,4 +1,5 @@
 using Units.Hero;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace UI {
@@ -11,14 +12,16 @@ namespace UI {
       public Hero Hero {
          get => _hero;
          set {
-            healthBar.Health       = null;
-            weaponReloading.Weapon = null;
+            healthBar.Health            = null;
+            weaponReloading.WeaponOwner = null;
 
-            if (!(_hero = value))
+            _hero = value;
+
+            if (_hero.IsUnityNull())
                return;
 
-            healthBar.Health       = _hero.entity.Health.ValueOrDefault();
-            weaponReloading.Weapon = _hero.entity.WeaponOwner.enabled ? _hero.entity.WeaponOwner.value.Weapon : null;
+            healthBar.Health            = _hero.entity.Health.ValueOrDefault();
+            weaponReloading.WeaponOwner = _hero.entity.WeaponOwner.ValueOrDefault();
          }
       }
    }

@@ -76,6 +76,7 @@ namespace Infrastructure.Scopes {
          Reg<EnemiesFactory>();
          Reg<HeroFactory>();
          Reg<ItemsFactory>();
+         Reg<WeaponFactory>();
          Reg<BulletsFactory>();
          return;
 

@@ -31,14 +31,17 @@ namespace Infrastructure.Factories.Enemy {
       public Entity Spawn(ISpawnPoint spawnPoint) {
          Entity ins = Spawn<Entity>(spawnPoint.Enemy, Container(_TAG, spawnPoint.DebugName), spawnPoint.Position);
 
-         if (ins.Health.enabled) {
-            ins.Health.value.OnZero += RegDeath;
+         ins.Health.Try(
+            h => {
+               h.OnZero += RegDeath;
+               return;
 
-            void RegDeath() {
-               ins.Health.value.OnZero -= RegDeath;
-               RegisterDeath(ins);
+               void RegDeath() {
+                  h.OnZero -= RegDeath;
+                  RegisterDeath(ins);
+               }
             }
-         }
+         );
 
          Enemies.Add(ins);
          return ins;

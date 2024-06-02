@@ -15,6 +15,10 @@ MonoBehaviour:
   title: Proto
   color: {r: 0.13679248, g: 0.66568446, b: 1, a: 0}
   rooms:
+  - m_AssetGUID: 63b93196c5315194db73a8eb293c3f57
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   - m_AssetGUID: c920567c752ed3346b1c7e90d4f4eb68
     m_SubObjectName: 
     m_SubObjectType: 

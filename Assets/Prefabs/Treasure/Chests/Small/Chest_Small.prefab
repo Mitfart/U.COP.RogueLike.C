@@ -52,17 +52,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartsCount:
     min: 0
-    max: 3
+    max: 0
     minEdge: 0
     maxEdge: 99
     rounded: 1
   lootBag: {fileID: 11400000, guid: 8cfdecf5a2f156e498451694cf217443, type: 2}
   interactable: {fileID: 2571446858116497262}
   animator: {fileID: 2478012618207721886}
-  count: 5
-  gap: 0.25
-  spreadRange: {x: 1, y: 2.5}
-  duration: 0.25
+  dropItems:
+    count: 3
+    gap: 0.25
+    spreadRange: {x: 0, y: 1}
+    duration: 0.5
 --- !u!114 &2571446858116497262
 MonoBehaviour:
   m_ObjectHideFlags: 0

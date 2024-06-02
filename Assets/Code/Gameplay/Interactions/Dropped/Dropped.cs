@@ -1,5 +1,5 @@
+using System.Threading.Tasks;
 using DefaultNamespace;
-using Extensions;
 using Infrastructure.Services.Time;
 using UnityEngine;
 using VContainer;
@@ -7,39 +7,54 @@ using VContainer;
 namespace Interactions.Items {
    public abstract class Dropped : MonoBehaviour {
       private ITimeService _timeService;
-      private Transform    _self;
 
 
-
-      private void Awake() {
-         _self = transform;
-      }
 
       [Inject]
       public void Construct(ITimeService timeService) {
          _timeService = timeService;
       }
 
-      public async void Pick(Entity picker, float speed) {
+
+
+      public async void Pick(Entity picker, float duration) {
          this.Off();
 
          PickStart(picker);
-
-         while (!transform.AtDestination2D(picker.Position)) {
-            _self.position += (Vector3)(picker.Position - _self.Position2D()).normalized * (speed * _timeService.Delta);
-
-            PickProcess(picker);
-            await Awaitable.EndOfFrameAsync();
-         }
-
+         await PickProcess_internal(picker, duration);
          PickEnd(picker);
+
          Destroy(gameObject);
       }
 
       public abstract bool Compatible(Entity picker);
 
+
+
       protected virtual void PickStart(Entity   picker) { }
       protected virtual void PickProcess(Entity picker) { }
       protected virtual void PickEnd(Entity     picker) { }
+
+
+
+      private async Task PickProcess_internal(Entity picker, float duration) {
+         Transform self          = transform;
+         Vector2   startPosition = self.Position2D();
+         float     rate          = 1f / duration;
+         var       time          = 0f;
+
+         while (time < 1f) {
+            time += _timeService.Delta * rate;
+
+            self.position = Vector2.Lerp(
+               startPosition,
+               picker.Position,
+               time
+            );
+
+            PickProcess(picker);
+            await Awaitable.EndOfFrameAsync();
+         }
+      }
    }
 }

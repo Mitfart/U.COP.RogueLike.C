@@ -7,19 +7,28 @@ namespace Interactions.Items.Concrete {
       public int amount;
 
       public override void Apply(Entity entity) {
-         if (!entity.WeaponOwner.enabled
-          || entity.WeaponOwner.value.Weapon.attackMethod is not RangeWeaponAttack rangeAttack)
-            return;
+         entity.WeaponOwner.Try(
+            wo => {
+               if (wo.Weapon.attackMethod is not RangeWeaponAttack rangeAttack)
+                  return;
 
-         rangeAttack.spawner.BulletsCount += amount;
+               rangeAttack.spawner.BulletsCount += amount;
+
+               float minSpread = 5 * rangeAttack.spawner.BulletsCount;
+               rangeAttack.spawner.SpreadAngle = Mathf.Max(rangeAttack.spawner.SpreadAngle, minSpread);
+            }
+         );
       }
 
       public override void Revoke(Entity entity) {
-         if (!entity.WeaponOwner.enabled
-          || entity.WeaponOwner.value.Weapon.attackMethod is not RangeWeaponAttack rangeAttack)
-            return;
+         entity.WeaponOwner.Try(
+            wo => {
+               if (wo.Weapon.attackMethod is not RangeWeaponAttack rangeAttack)
+                  return;
 
-         rangeAttack.spawner.BulletsCount -= amount;
+               rangeAttack.spawner.BulletsCount -= amount;
+            }
+         );
       }
    }
 }

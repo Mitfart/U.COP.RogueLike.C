@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Battle.HitBoxes.Receiver.Hurt;
 using Battle.Weapons;
@@ -6,6 +7,8 @@ using UnityEngine;
 
 namespace Units {
    public class WeaponOwner : MonoBehaviour {
+      public Action<Weapon> OnChangeWeapon;
+
       public Entity       entity;
       public HurtReceiver hurtReceiver;
 
@@ -14,13 +17,22 @@ namespace Units {
       public Weapon Weapon {
          get => weapon;
          set {
-            if (!weapon.IsUnityNull())
+            if (!weapon.IsUnityNull()) {
                hurtReceiver.Remove(weapon.receiver);
+               Destroy(weapon.gameObject);
+            }
 
             weapon = value;
 
-            if (!weapon.IsUnityNull())
+            if (!weapon.IsUnityNull()) {
                hurtReceiver.Add(weapon.receiver);
+
+               Transform weaponT = weapon.transform;
+               weaponT.SetParent(entity.GetBody());
+               weaponT.localPosition = Vector3.zero;
+            }
+
+            OnChangeWeapon?.Invoke(weapon);
          }
       }
 
@@ -31,22 +43,21 @@ namespace Units {
             hurtReceiver.Add(weapon.receiver);
       }
 
-      private void OnEnable() {
-         if (entity.View.enabled)
-            entity.View.value.OnChangePoint += Aim;
+      private void OnEnable()  => entity.View.Try(ev => ev.OnChangePoint += Aim);
+      private void OnDisable() => entity.View.Try(ev => ev.OnChangePoint -= Aim);
+
+
+
+      public async void Attack() {
+         if (!weapon.IsUnityNull())
+            await weapon.Attack();
       }
 
-      private void OnDisable() {
-         if (entity.View.enabled)
-            entity.View.value.OnChangePoint -= Aim;
+
+
+      public void Aim(Vector2 at) {
+         if (!weapon.IsUnityNull())
+            weapon.transform.Rotate2D(at);
       }
-
-
-
-      public async Task Attack() => await weapon.Attack();
-
-
-
-      public void Aim(Vector2 at) => weapon.transform.Rotate2D(at);
    }
 }

@@ -37,13 +37,18 @@ namespace Infrastructure.Factories {
          T           obj,
          object      key,
          Transform   container = null,
-         Vector3     at  = default,
-         Quaternion? rot = null
+         Vector3     at        = default,
+         Quaternion? rot       = null
       ) where T : Component {
          return obj.IsUnityNull() ? Spawn<T>(key, container, at, rot) : obj;
       }
 
-      protected T Spawn<T>(object key, Transform container, Vector3 at = default, Quaternion? rot = null) where T : Component {
+      protected T Spawn<T>(
+         object      key,
+         Transform   container = null,
+         Vector3     at        = default,
+         Quaternion? rot       = null
+      ) where T : Component {
          T ins = Assets.Ins<T>(
             key,
             at,
