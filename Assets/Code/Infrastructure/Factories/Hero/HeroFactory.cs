@@ -42,7 +42,7 @@ namespace Infrastructure.Factories.Hero {
       private Units.Hero.Hero InsHero(Vector3 at) {
          Hero = GetOrSpawn(Hero, _HERO, Container(_TAG), at);
 
-         Hero.entity.Health.Try(h => h.OnZero += () => _gameStateMachine.Enter<EndGameState>());
+         Hero.entity.OnDie += () => _gameStateMachine.Enter<EndGameState, bool>(false);
 
          return Hero;
       }

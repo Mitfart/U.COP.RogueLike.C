@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Units.Behavior.Components {
-   public class DestroyOnZeroHealth : MonoBehaviour {
+   public class DieOnZeroHealth : MonoBehaviour {
       public Entity entity;
       public Health health;
 

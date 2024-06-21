@@ -15,6 +15,8 @@ namespace Interactions.Loot {
    public class Treasure : MonoBehaviour {
       private static readonly int _IsOpen = Animator.StringToHash(name: "IsOpen");
 
+      public event Action OnClaimed;
+
       [SerializeField, RangeEdges(min: 0, max: 99)] private Ranged heartsCount = new(min: 0, max: 0, rounded: true);
 
       public              LootBag      lootBag;
@@ -23,7 +25,7 @@ namespace Interactions.Loot {
 
       public DropParams dropItems = new(1, .25f, new Vector2(x: 0f, y: 1f), .5f);
 
-      private bool         _isOpen;
+      public  bool         Claimed { get; private set; }
       private ItemsFactory _itemsFactory;
 
 
@@ -36,13 +38,13 @@ namespace Interactions.Loot {
 
 
       private void OpenLoot(HeroInteractor _) {
-         if (_isOpen)
+         if (Claimed)
             return;
 
          interactable.Off();
 
-         _isOpen = true;
-         animator.SetBool(_IsOpen, _isOpen);
+         Claimed = true;
+         animator.SetBool(_IsOpen, Claimed);
 
          DropItems();
          DropHearts();

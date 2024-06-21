@@ -2,12 +2,17 @@ using DG.Tweening;
 using EasyButtons;
 using Infrastructure.GameSM;
 using Infrastructure.GameSM.States;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 
 namespace UI {
    public class UIEndScreen : MonoBehaviour {
+      public string   winString;
+      public string   loseString;
+      public TMP_Text text;
+
       public Button      exitBtn;
       public CanvasGroup menu;
       public float       fadeDuration = .5f;
@@ -36,7 +41,10 @@ namespace UI {
 
       [Button(Mode = ButtonMode.EnabledInPlayMode)] public void ToMainMenu() => _gameStateMachine.Enter<BootstrapState>();
 
-      public UIEndScreen WinView(bool win = true) => this;
+      public UIEndScreen WinView(bool win) {
+         text.SetText(win ? winString : loseString);
+         return this;
+      }
 
 
 

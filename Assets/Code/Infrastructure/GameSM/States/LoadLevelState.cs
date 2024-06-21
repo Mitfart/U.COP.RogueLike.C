@@ -6,6 +6,7 @@ using Infrastructure.Factories.Items;
 using Infrastructure.Factories.Level;
 using Infrastructure.Factories.UI;
 using Infrastructure.Loading;
+using Interactions.Loot;
 using Locations;
 using Units.Hero;
 using UnityEngine;
@@ -77,14 +78,13 @@ namespace Infrastructure.GameSM.States {
       }
 
       private void SpawnTreasures(IRoom room) {
-         foreach (ITreasurePoint treasurePoint in room.TreasurePoints) {
-            _levelFactory.SpawnTreasure(treasurePoint.Position, treasurePoint.TreasureSize);
-         }
+         foreach (SpawnPoint<Treasure> treasurePoint in room.TreasurePoints)
+            _levelFactory.SpawnTreasure(treasurePoint);
       }
 
       private void SpawnEnemies(IRoom room) {
-         foreach (ISpawnPoint spawnPoint in room.SpawnPoints) {
-            _enemiesFactory.Spawn(spawnPoint);
+         foreach (SpawnPoint<Entity> enemy in room.EnemyPoints) {
+            _enemiesFactory.Spawn(enemy);
          }
 
          if (_enemiesFactory.Enemies.Count > 0)

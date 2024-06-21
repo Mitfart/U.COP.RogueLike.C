@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Extensions;
 using Infrastructure.AssetsManagement;
 using Locations;
+using UnityEngine;
 using VContainer;
 
 namespace Infrastructure.Factories.Enemy {
@@ -28,23 +29,18 @@ namespace Infrastructure.Factories.Enemy {
 
 
 
-      public Entity Spawn(ISpawnPoint spawnPoint) {
-         Entity ins = Spawn<Entity>(spawnPoint.Enemy, Container(_TAG, spawnPoint.DebugName), spawnPoint.Position);
-
-         ins.Health.Try(
-            h => {
-               h.OnZero += RegDeath;
-               return;
-
-               void RegDeath() {
-                  h.OnZero -= RegDeath;
-                  RegisterDeath(ins);
-               }
-            }
-         );
+      public Entity Spawn(SpawnPoint<Entity> spawnPoint) {
+         Entity ins = Spawn(spawnPoint, _TAG);
+         
+         ins.OnDie += RegDeath;
 
          Enemies.Add(ins);
          return ins;
+
+         void RegDeath() {
+            ins.OnDie -= RegDeath;
+            RegisterDeath(ins);
+         }
       }
 
 

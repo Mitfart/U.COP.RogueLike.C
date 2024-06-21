@@ -1,3 +1,4 @@
+using System;
 using Attributes.ReadOnly;
 using Structs.Optional;
 using Units;
@@ -5,6 +6,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour {
+   public event Action OnDie; 
+   
    [field: SerializeField, SpaceAfter] private Transform body;
    [field: SerializeField]             public  string    Name { get; private set; }
    [field: SerializeField]             public  Team      Team { get; private set; }
@@ -46,7 +49,10 @@ public class Entity : MonoBehaviour {
 
    public void SetTeam(Team team) => Team = team;
 
-   public void Die() => Destroy(gameObject);
+   public void Die() {
+      OnDie?.Invoke();
+      Destroy(gameObject);
+   }
 
    public Transform GetBody() => body;
 }

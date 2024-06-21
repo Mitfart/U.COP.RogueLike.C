@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7700033848665630867}
   - component: {fileID: 3779099498481658638}
   m_Layer: 3
-  m_Name: '[ SP ]__AI_WALKER'
+  m_Name: '[ SP ]__AI Walker__AI_WALKER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugName: SP
-  enemy:
+  <TypedPrefab>k__BackingField:
     m_AssetGUID: bb3022a85f6e8ad48a3929d8d2684eb9
     m_SubObjectName: 
     m_SubObjectType: 
@@ -304,10 +304,10 @@ MonoBehaviour:
   - {fileID: 5103414408601310640}
   - {fileID: 8976226562994346935}
   - {fileID: 6395113005347491945}
-  spawnPoints:
+  enemyPoints:
+  - {fileID: 2225428802271956707}
   - {fileID: 1752747139605696798}
   - {fileID: 4138271137864306449}
-  - {fileID: 2225428802271956707}
   - {fileID: 3779099498481658638}
   - {fileID: 8580965774172049084}
   - {fileID: 3199131394571705598}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 3780434950290211669}
   - component: {fileID: 8580965774172049084}
   m_Layer: 3
-  m_Name: '[ SP ]__AI_SHOOTER'
+  m_Name: '[ SP ]__AI Walker__AI_WALKER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,8 +374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugName: SP
-  enemy:
-    m_AssetGUID: 1ddf8cd348e2ee34f9d5fde7f7871d67
+  <TypedPrefab>k__BackingField:
+    m_AssetGUID: bb3022a85f6e8ad48a3929d8d2684eb9
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 8903173003287776674}
   - component: {fileID: 4138271137864306449}
   m_Layer: 3
-  m_Name: '[ SP ]__AI_WALKER'
+  m_Name: '[ SP ]__AI Shooter__AI_SHOOTER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,8 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugName: SP
-  enemy:
-    m_AssetGUID: bb3022a85f6e8ad48a3929d8d2684eb9
+  <TypedPrefab>k__BackingField:
+    m_AssetGUID: 1ddf8cd348e2ee34f9d5fde7f7871d67
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 688898029382429948}
   - component: {fileID: 2225428802271956707}
   m_Layer: 3
-  m_Name: '[ SP ]__AI_WALKER'
+  m_Name: '[ SP ]__AI Shooter__AI_SHOOTER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,8 +474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugName: SP
-  enemy:
-    m_AssetGUID: bb3022a85f6e8ad48a3929d8d2684eb9
+  <TypedPrefab>k__BackingField:
+    m_AssetGUID: 1ddf8cd348e2ee34f9d5fde7f7871d67
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 6360143549539019068}
   - component: {fileID: 7163595403415525779}
   m_Layer: 3
-  m_Name: '[ Treasure ]__Small'
+  m_Name: '[ SP ]__NONE__'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,7 +523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2a5b31f5914cf3800e23f148d331fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TreasureSize>k__BackingField: 0
+  debugName: SP
+  <TypedPrefab>k__BackingField:
+    m_AssetGUID: d51a095f8dd83bb4a8c6f17055014b04
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!1 &3642347628379381227
 GameObject:
   m_ObjectHideFlags: 0
@@ -16289,7 +16294,7 @@ GameObject:
   - component: {fileID: 8704921413945113075}
   - component: {fileID: 1752747139605696798}
   m_Layer: 3
-  m_Name: '[ SP ]__AI_WALKER'
+  m_Name: '[ SP ]__AI Shooter__AI_SHOOTER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16323,8 +16328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugName: SP
-  enemy:
-    m_AssetGUID: bb3022a85f6e8ad48a3929d8d2684eb9
+  <TypedPrefab>k__BackingField:
+    m_AssetGUID: 1ddf8cd348e2ee34f9d5fde7f7871d67
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -21466,7 +21471,7 @@ GameObject:
   - component: {fileID: 7772261917112079969}
   - component: {fileID: 3199131394571705598}
   m_Layer: 3
-  m_Name: '[ SP ]__AI_SHOOTER'
+  m_Name: '[ SP ]__AI Walker__AI_WALKER'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21500,8 +21505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugName: SP
-  enemy:
-    m_AssetGUID: 1ddf8cd348e2ee34f9d5fde7f7871d67
+  <TypedPrefab>k__BackingField:
+    m_AssetGUID: bb3022a85f6e8ad48a3929d8d2684eb9
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
@@ -21600,9 +21605,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 688898029382429948}
   - {fileID: 8704921413945113075}
   - {fileID: 8903173003287776674}
-  - {fileID: 688898029382429948}
   - {fileID: 7700033848665630867}
   - {fileID: 3780434950290211669}
   - {fileID: 7772261917112079969}

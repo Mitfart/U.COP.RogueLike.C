@@ -6,7 +6,7 @@ using Infrastructure.Services.Input;
 using Locations;
 
 namespace Infrastructure.GameSM.States {
-   public class EndGameState : GameState {
+   public class EndGameState : GameState<bool> {
       private readonly IInputService         _inputService;
       private readonly Level                 _level;
       private readonly UIFactory             _uiFactory;
@@ -31,8 +31,8 @@ namespace Infrastructure.GameSM.States {
          _factories    = factories;
       }
 
-      public override void Enter() {
-         _uiFactory.InsEndGameScreen(win: true);
+      public override void Enter(bool data) {
+         _uiFactory.InsEndGameScreen(data);
       }
 
       public override async void Exit() {

@@ -40,9 +40,9 @@ namespace Infrastructure.Factories.UI {
 
 
 
-      public UIMainMenu  InsMainMenu()                          => _uiMainMenu = GetOrSpawn(_uiMainMenu,   _MAIN_MENU,  UICanvas(), UICanvas().position).SetRoot(_uiRoot);
-      public UIEndScreen InsEndGameScreen(bool     win = false) => _uiEndScreen = GetOrSpawn(_uiEndScreen, _END_SCREEN, UICanvas(), UICanvas().position).WinView(win).SetRoot(_uiRoot);
-      public UIHero      InsHUD(Units.Hero.Hero hero)        => _uiHero = GetOrSpawn(_uiHero,           _HUD_UI,     UICanvas(), UICanvas().position).With(ui => ui.Hero = hero);
+      public UIMainMenu  InsMainMenu()                => _uiMainMenu = GetOrSpawn(_uiMainMenu,   _MAIN_MENU,  UICanvas(), UICanvas().position).SetRoot(_uiRoot);
+      public UIEndScreen InsEndGameScreen(bool  win)  => _uiEndScreen = GetOrSpawn(_uiEndScreen, _END_SCREEN, UICanvas(), UICanvas().position).WinView(win).SetRoot(_uiRoot);
+      public UIHero      InsHUD(Units.Hero.Hero hero) => _uiHero = GetOrSpawn(_uiHero,           _HUD_UI,     UICanvas(), UICanvas().position).With(ui => ui.Hero = hero);
 
       private Transform UICanvas() => (_uiRoot = GetOrSpawn(_uiRoot, _ROOT)).transform;
    }

@@ -73,7 +73,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f99f3b2c1df38be49b5b9cdef94d646b
-    m_Address: CHEST_SM
+    m_Address: CHEST_BASE
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -94,6 +94,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 26372d2a3ed38e345b9a3f06d0961318
     m_Address: UI_ROOT
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fed0cabee1094246ac32be9deb306f0
+    m_Address: Chest_Open_Checker
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da44e2dae25904a4783c495b791cf202
+    m_Address: CHEST_SMALL
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d51a095f8dd83bb4a8c6f17055014b04
+    m_Address: CHEST_LARGE
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 793649a9d39dfa44eb8df600864fe28d
+    m_Address: CHEST_TUTORIAL
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Extensions;
 using Infrastructure.AssetsManagement;
+using Locations;
 using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
@@ -54,6 +55,21 @@ namespace Infrastructure.Factories {
             at,
             rot,
             container
+         );
+         Di.InjectGameObject(ins.gameObject);
+         return ins;
+      }
+
+      protected T Spawn<T>(
+         SpawnPoint<T> spawnPoint,
+         string        tag = null,
+         Quaternion?   rot = null
+      ) where T : Component {
+         T ins = Assets.Ins<T>(
+            spawnPoint.Key,
+            spawnPoint.Position,
+            rot,
+            Container(tag, spawnPoint.DebugName)
          );
          Di.InjectGameObject(ins.gameObject);
          return ins;

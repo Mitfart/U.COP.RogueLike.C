@@ -68,7 +68,7 @@ namespace Interactions.Level {
          await _heroFactory.Hero.animator.ExitRoom(jumpPivot.position);
 
          if (_roomId < 0 || _roomId >= _level.Location.Rooms.Count)
-            _stateMachine.Enter<EndGameState>();
+            _stateMachine.Enter<EndGameState, bool>(true);
          else
             _stateMachine.Enter<LoadLevelState, LoadData>(new LoadData(_location, _roomId));
       }

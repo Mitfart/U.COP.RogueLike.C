@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd16bf1468f142169e729d0b6ff5d550, type: 3}
-  m_Name: Chest_Small_LootBag
+  m_Name: LootBag_Weapons_All
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: 726ccf64b1ebe3242a8d0598fc383ffa, type: 2}
@@ -21,10 +21,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1d8d98af1fdda49b7acfb06aa13207, type: 2}
   - {fileID: 11400000, guid: 1cbd61638860df241a92c2bf501cb920, type: 2}
   - {fileID: 11400000, guid: 1913233c51c5c9a4bb7548daf5e0a99b, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}
-  - {fileID: 11400000, guid: 9a7995d060e34484f9dd535e5faad832, type: 2}

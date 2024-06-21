@@ -565,7 +565,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65
   pickRadius: 0.4375
-  speed: 7.5
+  duration: 0.125
 --- !u!1 &5060703373980859302
 GameObject:
   m_ObjectHideFlags: 0

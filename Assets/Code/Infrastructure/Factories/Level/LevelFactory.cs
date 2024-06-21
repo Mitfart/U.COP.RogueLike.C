@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Extensions;
 using Infrastructure.AssetsManagement;
@@ -11,10 +10,7 @@ using VContainer.Unity;
 
 namespace Infrastructure.Factories.Level {
    public class LevelFactory : Factory {
-      private const string _TAG      = "Level";
-      private const string _CHEST_SM = "CHEST_SM";
-      private const string _CHEST_NM = "CHEST_NM";
-      private const string _CHEST_LG = "CHEST_LG";
+      private const string _TAG = "Level";
 
       public readonly List<Door>     Doors     = new();
       public readonly List<Treasure> Treasures = new();
@@ -46,13 +42,8 @@ namespace Infrastructure.Factories.Level {
 
 
 
-      public Treasure SpawnTreasure(Vector3 pos, TreasureSize treasureSize) {
-         Treasure ins = treasureSize switch {
-            TreasureSize.Small  => Spawn<Treasure>(_CHEST_SM, Container(_TAG, _CHEST_SM), pos),
-            TreasureSize.Normal => Spawn<Treasure>(_CHEST_NM, Container(_TAG, _CHEST_NM), pos),
-            TreasureSize.Large  => Spawn<Treasure>(_CHEST_LG, Container(_TAG, _CHEST_LG), pos),
-            _                   => throw new ArgumentOutOfRangeException(nameof(treasureSize), treasureSize, message: null)
-         };
+      public Treasure SpawnTreasure(SpawnPoint<Treasure> treasurePoint) {
+         Treasure ins = Spawn(treasurePoint, _TAG);
 
          Di.InjectGameObject(ins.gameObject);
          Treasures.Add(ins);
