@@ -6,7 +6,7 @@ namespace Movements {
       public float       maxAcceleration;
       public Rigidbody2D rb;
 
-      public override Vector2 Velocity     => rb.velocity;
+      public override Vector2 Velocity     => rb.linearVelocity;
       private         Vector2 GoalVelocity => base.Velocity;
 
 
